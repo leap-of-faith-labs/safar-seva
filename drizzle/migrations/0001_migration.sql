@@ -1,0 +1,1 @@
+UPDATE public.pulse_counts SET value = CASE metric WHEN 'participants' THEN 148 WHEN 'observations' THEN 92 WHEN 'contributions' THEN 54 WHEN 'groups' THEN 36 END;

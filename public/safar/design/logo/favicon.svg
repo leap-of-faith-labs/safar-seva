@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="LOFL — Leap of Faith Labs">
+  <rect width="120" height="120" rx="22" fill="#FAF4E9"/>
+  <!-- sun -->
+  <circle cx="60" cy="42" r="30" fill="#1B1B19"/>
+  <!-- horizon -->
+  <path d="M60 71 L9 85" stroke="#1B1B19" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M60 71 L111 85" stroke="#1B1B19" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- refracted spectrum rays -->
+  <path d="M60 71 L23.0 112 L33.2 112 Z" fill="#BF4131"/>
+  <path d="M60 71 L35.8 112 L45.9 112 Z" fill="#E07D38"/>
+  <path d="M60 71 L48.5 112 L58.7 112 Z" fill="#E9B23E"/>
+  <path d="M60 71 L61.3 112 L71.5 112 Z" fill="#6B9A40"/>
+  <path d="M60 71 L74.1 112 L84.3 112 Z" fill="#346FA6"/>
+  <path d="M60 71 L86.9 112 L97.0 112 Z" fill="#7B4F9E"/>
+</svg>

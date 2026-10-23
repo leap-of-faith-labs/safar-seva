@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="LOFL — Leap of Faith Labs">
+  <!-- Rising sun refracting into the spectrum. On light surfaces use #1B1B19 for the sun;
+       on dark surfaces swap the sun + horizon strokes to #FAF4E9 (cream). -->
+  <circle cx="60" cy="42" r="30" fill="#1B1B19"/>
+  <path d="M60 71 L9 85" stroke="#1B1B19" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M60 71 L111 85" stroke="#1B1B19" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M60 71 L23 112 L33 112 Z" fill="#BF4131"/>
+  <path d="M60 71 L36 112 L46 112 Z" fill="#E07D38"/>
+  <path d="M60 71 L49 112 L59 112 Z" fill="#E9B23E"/>
+  <path d="M60 71 L61 112 L71 112 Z" fill="#6B9A40"/>
+  <path d="M60 71 L74 112 L84 112 Z" fill="#346FA6"/>
+  <path d="M60 71 L87 112 L97 112 Z" fill="#7B4F9E"/>
+</svg>

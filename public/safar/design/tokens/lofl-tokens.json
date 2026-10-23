@@ -1,0 +1,201 @@
+{
+  "_about": "LOFL design tokens, machine-readable. Two layers that share some names with different values — never mix them on one page. 'tool' = Design Language v0.4 ('LOFL · Sand'), for tools and the shelf. 'site' = lofl.world extract v1, for pages people read. Colour forks still open are listed under 'suit_forks' and in OPEN-DECISIONS.md. License CC-BY-SA-4.0, Leap of Faith Labs.",
+  "version": "0.4 (tool) · v1 (site) · kit 2026-10-24",
+  "spectrum": {
+    "_note": "the sun-logo refraction — a signature, never a background wash",
+    "red": "#BF4131",
+    "orange": "#E07D38",
+    "yellow": "#E9B23E",
+    "green": "#6B9A40",
+    "blue": "#346FA6",
+    "indigo": "#2C5C8A",
+    "violet": "#7B4F9E",
+    "sun_on_light": "#1B1B19",
+    "sun_on_dark": "#FAF4E9"
+  },
+  "tool": {
+    "surfaces": {
+      "desk": "#EBE1CD",
+      "bg": "#F1E8D7",
+      "surface": "#FAF4E9",
+      "surface2": "#F1E8D7",
+      "ink": "#28332E",
+      "soft": "#4C544C",
+      "muted": "#6A6B54",
+      "line": "#C1BDAE",
+      "line2": "#A5A397",
+      "line3": "#D3CDBE"
+    },
+    "accents": {
+      "primary": "#C2592A",
+      "primary-ink": "#F1E8D7",
+      "head": "#2C5C8A",
+      "head-text": "#2C5C8A",
+      "link": "#1F6F5C",
+      "link-hover": "#9F4720"
+    },
+    "suits": {
+      "learning": {
+        "fill": "#7B4F9E",
+        "tint": "#E7DBDE",
+        "deep": "#7B4F9E",
+        "ink": "#FAF4E9",
+        "word": "violet · contemplative"
+      },
+      "skill": {
+        "fill": "#BF4131",
+        "tint": "#F1D9CE",
+        "deep": "#953D30",
+        "ink": "#FAF4E9",
+        "word": "coral red · kinetic"
+      },
+      "culture": {
+        "fill": "#E9B23E",
+        "tint": "#F7EACF",
+        "deep": "#9A7420",
+        "ink": "#28332E",
+        "word": "amber · gathered"
+      },
+      "green": {
+        "fill": "#6B9A40",
+        "tint": "#E5E7D0",
+        "deep": "#587D3B",
+        "ink": "#28332E",
+        "word": "olive · regenerative"
+      }
+    },
+    "verdicts": {
+      "ok": "#3E8655",
+      "ok-deep": "#386F4A",
+      "ok-bright": "#A8C9B3",
+      "warn": "#B0791A",
+      "warn-deep": "#9A7420",
+      "warn-bright": "#F3D595",
+      "danger": "#A93226",
+      "danger-deep": "#8C2318",
+      "danger-tint": "#F6E3DF"
+    },
+    "type": {
+      "display": "Cormorant Garamond (400 on tools) — titles, node names",
+      "body": "Inter — labels/UI 16/14, body 15/1.55",
+      "geo": "Jost — eyebrows, labels, wordmark",
+      "hand": "Kalam — margin notes, scribe lines; warmth only, never data",
+      "deva_display": "Noto Serif Devanagari",
+      "deva_body": "Noto Sans Devanagari",
+      "mono": "system monospace — hashes only",
+      "min_size": "12.5px on screen · 12pt in print"
+    },
+    "spacing_px": {
+      "hair": 4,
+      "chip_pad": 8,
+      "grid_gap": 12,
+      "card_pad": 20,
+      "section_rhythm": 44,
+      "min_touch": 44
+    },
+    "shape": {
+      "radius": "8–10px",
+      "frame": "1.5px solid line2",
+      "divider": "1px dashed line",
+      "shadow": "none — paper doesn't float"
+    }
+  },
+  "site": {
+    "surfaces": {
+      "paper": "#FAF4E9",
+      "paper-2": "#F1E8D7",
+      "paper-3": "#EBE1CD",
+      "ink": "#28332E",
+      "ink-2": "#6A6B54",
+      "ink-3": "#7B7838",
+      "line": "rgba(40,51,46,.14)",
+      "line-soft": "rgba(40,51,46,.08)"
+    },
+    "accents": {
+      "indigo (= Pine Teal)": "#1F6F5C",
+      "teal": "#1F6F5C",
+      "saffron (= Warm Ember)": "#C2592A",
+      "saffron-dk": "#9F4720",
+      "olive": "#7B7838",
+      "palm": "#3E8655"
+    },
+    "type": {
+      "display": "Cormorant Garamond 600",
+      "sans": "Inter",
+      "geo": "Jost",
+      "deva": "Noto Serif Devanagari"
+    },
+    "scale": {
+      "step--1": "clamp(0.82rem, 0.79rem + 0.15vw, 0.92rem)",
+      "step-0": "clamp(1rem, 0.96rem + 0.2vw, 1.12rem)",
+      "step-1": "clamp(1.2rem, 1.12rem + 0.4vw, 1.45rem)",
+      "step-2": "clamp(1.45rem, 1.3rem + 0.75vw, 1.95rem)",
+      "step-3": "clamp(1.8rem, 1.55rem + 1.25vw, 2.7rem)",
+      "step-4": "clamp(2.2rem, 1.8rem + 2vw, 3.6rem)",
+      "step-5": "clamp(2.7rem, 2.05rem + 3.2vw, 5rem)"
+    },
+    "shape": {
+      "radius": "14px",
+      "radius-lg": "22px",
+      "radius-pill": "999px",
+      "maxw": "1140px",
+      "maxw-narrow": "760px",
+      "shadow": "0 10px 30px -12px rgba(40,51,46,.22)"
+    }
+  },
+  "glyphs": {
+    "_note": "card glyphs as used by lofl-cards; the v0.4 Promise Ledger chips use a different set — see OPEN-DECISIONS.md §2",
+    "learning": "◆",
+    "skill": "▲",
+    "culture": "●",
+    "green": "✦",
+    "close": "✦"
+  },
+  "suit_forks": {
+    "_note": "Six live suit-colour sets were found on 2026-10-24. Only M can pick one. Until then: tools use 'tool_v04'; forged card decks use 'cards_skill'.",
+    "tool_v04": {
+      "learning": "#7B4F9E",
+      "skill": "#BF4131",
+      "culture": "#E9B23E",
+      "green": "#6B9A40",
+      "where": "Design Language v0.4, all 13 shelf surfaces, this kit's lofl-tool.css"
+    },
+    "cards_skill": {
+      "learning": "#346FA6",
+      "skill": "#C2592A",
+      "culture": "#7B4F9E",
+      "green": "#3E8655",
+      "close": "#1F6F5C",
+      "where": "installed /lofl-cards + /lofl-css skills, forge_deck.py, decks since 2026-07-02"
+    },
+    "site_brand_md": {
+      "learning (LIU)": "blue",
+      "skill (SIU)": "orange",
+      "culture (CIU)": "plum",
+      "green (GIU)": "green",
+      "where": "lofl-world/BRAND.md (words only, no hex)"
+    },
+    "candlelit_default": {
+      "learning": "#663D85",
+      "skill": "#E64D40",
+      "culture": "#F4A83C",
+      "green": "#AABA3D",
+      "where": "Cards/lofl-css-default (dark default) = theme 'lofl-diya'"
+    },
+    "engine_placeholder": {
+      "learning": "#4f46e5",
+      "skill": "#d97706",
+      "culture": "#be185d",
+      "green": "#16a34a",
+      "close": "#6d28d9",
+      "where": "vault lofl-cards-engine/references/impact-units.md + /lofl-green-cards (#16a34a)"
+    },
+    "theme_js_paper": {
+      "learning": "#3d5a98",
+      "skill": "#9c6322",
+      "culture": "#a8475c",
+      "green": "#4e7a4c",
+      "where": "lofl-ai/assets/lofl-theme.js preset 'LOFL Paper'"
+    }
+  }
+}

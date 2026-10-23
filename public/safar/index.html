@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="mr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F1E8D7">
+  <meta name="description" content="Safar Seva — small acts of learning, giving and noticing on your Pune Metro ride. Marathi-first, offline-ready, and private to your phone.">
+  <title>सफर सेवा · Safar Seva · Ride together</title>
+  <meta property="og:title" content="Safar Seva · Ride together">
+  <meta property="og:description" content="A Marathi-first Pune Metro ride: learn a story, choose a title, notice a little good.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="./design/logo/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./design/css/lofl-tool.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./ux.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+<div class="lofl-page safar-page">
+  <a class="skip-link" href="#main">मुख्य भागाकडे जा · Skip to content</a>
+  <div class="lofl-spectrum-rule" aria-hidden="true"></div>
+  <header class="site-header shell lofl-frame">
+    <a class="brand" id="nav-home" href="#journey" aria-label="सफर सेवा · Safar Seva home">
+      <img class="brand-mark" src="./design/logo/lofl-logo.svg" alt="LOFL" width="60" height="60">
+      <span><strong lang="mr">सफर सेवा</strong><small lang="en">SAFAR SEVA <span class="brand-divider">/</span> LEAP OF FAITH LABS</small></span>
+    </a>
+    <nav aria-label="Main navigation"><a id="nav-ride" href="#journey" lang="en">Ride</a><a href="#more" lang="en">Stories</a><a href="#ledger" lang="en">Notebook <span id="nav-count">0</span></a></nav>
+    <span class="connection" id="connection" role="status" lang="en"><i></i>Preparing offline…</span>
+  </header>
+
+  <section id="live-stats" class="live-stats shell" aria-label="Season pulse · Diwali Yatra" aria-live="polite"></section>
+  <main id="main" class="shell" tabindex="-1">
+    <div id="test-warning" class="warning" role="status" lang="en" hidden></div>
+    <div id="update-notice" class="warning update-notice" role="status" hidden><span>नवीन आवृत्ती तयार आहे. तुमचं जतन केलेलं काम कायम राहील. <span lang="en">An update is ready; saved work stays here.</span></span><button id="reload-update" class="secondary-button" type="button">नवीन आवृत्ती उघडा · Reload update</button></div>
+    <div id="storage-warning" class="warning" role="alert" hidden></div>
+    <div id="load-error" class="warning" role="alert" hidden></div>
+    <button id="retry-load" class="secondary-button" type="button" hidden>पुन्हा प्रयत्न करा · Try again</button>
+    <div id="invitation-banner" class="warning" role="status" hidden></div>
+    <section class="intro-grid" id="journey" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow" lang="en"><span class="line-dot" aria-hidden="true"></span> PUNE METRO · A LITTLE GOOD, ALONG THE WAY</p>
+        <h1 class="hero-title">एक प्रवास.<br><span>थोडं चांगलं.</span></h1>
+        <p class="hero-english" lang="en">Make a little room<br>for a little good.</p>
+        <p class="hero-description">पुण्याची एक गोष्ट वाचा. तुमची पसंती सांगा.<br>वाटेतलं एखादं चांगलं पाहा.<span lang="en">Discover a Pune story, make a small choice, and notice the world around you. At your own pace.</span></p>
+        <ol class="ride-ritual" aria-label="Three small activities"><li><span aria-hidden="true">01</span><strong>शिका<small lang="en">Learn a story</small></strong></li><li><span aria-hidden="true">02</span><strong>द्या<small lang="en">Give a thought</small></strong></li><li><span aria-hidden="true">03</span><strong>पाहा<small lang="en">Notice a little</small></strong></li></ol>
+        <p class="margin-note">तुमच्या गतीने. तुमच्या वाटेवर.</p>
+      </div>
+      <div class="journey-panel" id="ride-builder">
+        <div class="panel-topline"><span class="eyebrow" lang="en">01 / YOUR RIDE</span><span class="ticket-corner" aria-hidden="true">→</span></div>
+        <h2 id="hero-title">कुठपर्यंत जायचंय?</h2><p class="subheading" lang="en">Where are you headed?</p>
+        <form id="journey-form">
+          <div class="route-inputs">
+            <span class="route-rail" aria-hidden="true"><i></i><b></b><i></i></span>
+            <div class="station-field"><label for="from">कुठून <span lang="en">FROM</span></label><select id="from" name="from" aria-describedby="ride-preview journey-error" required disabled><option>Loading stations…</option></select></div>
+            <button type="button" id="swap-stations" disabled class="swap-button" aria-label="प्रवासाची दिशा बदला · Reverse journey">⇅</button>
+            <div class="station-field"><label for="to">कुठे <span lang="en">TO</span></label><select id="to" name="to" aria-describedby="ride-preview journey-error" required disabled><option>Loading stations…</option></select></div>
+          </div>
+          <div class="ride-preview" id="ride-preview" aria-live="polite"></div>
+          <button class="primary-button lofl-btn lofl-btn--solid full" id="start-button" type="submit" disabled><span>सफर सुरू करूया<small lang="en">Start my ride</small></span><span aria-hidden="true">→</span></button>
+          <p id="journey-error" class="field-error" role="alert"></p>
+        </form>
+        <button id="resume-ride" class="text-button" hidden>मागची सफर सुरू ठेवा · Resume saved ride</button>
+        <p class="panel-footnote" lang="en">No login. No location tracking. Just your ride.</p>
+      </div>
+    </section>
+
+    <section id="active-ride" class="active-ride" hidden aria-labelledby="active-title"></section>
+    <section id="yatra" class="yatra-section" aria-labelledby="yatra-title"></section>
+
+    <section id="ledger" class="ledger-section" aria-labelledby="ledger-title">
+      <div class="section-header"><div><p class="eyebrow" lang="en">02 / KEPT ON THIS DEVICE</p><h2 id="ledger-title" tabindex="-1">तुमची प्रवासवही <span lang="en">Your notebook</span></h2></div><button id="export-ledger" type="button" class="secondary-button"><span aria-hidden="true">↓</span> वही डाउनलोड करा <span lang="en">Download notebook</span></button></div>
+      <div class="ledger-stats" id="ledger-stats"></div>
+      <p class="ledger-context">फक्त या फोनवरील नोंदी. शिक्के सहभागासाठी आहेत. निरीक्षणं त्या वेळची आहेत; सध्याच्या स्थितीची हमी नाही.<br><span lang="en">Kept on this device. Choices are preferences, not published edits. Observations are dated and unverified.</span></p>
+      <details id="export-preview" class="export-preview" hidden><summary>डाउनलोड झालं नाही? मजकूर कॉपी करा · Download trouble?</summary><p class="task-hint" lang="en">This is the same file offered for download. If the download does not start, select and copy this text. Review it before sharing.</p><textarea id="export-json" readonly spellcheck="false" aria-label="Exported ledger JSON"></textarea></details>
+      <div id="ledger-rides"></div>
+      <div id="observation-history"></div>
+      <div class="review-status-header"><h3>तुमच्या पसंती <small lang="en">Your choices</small></h3><button id="refresh-reviews" type="button" hidden>Refresh</button></div>
+      <div id="review-status"></div>
+      <section id="share-panel" class="share-panel" hidden aria-labelledby="share-title"></section>
+    </section>
+
+    <details id="more" class="more-disclosure"><summary>आणखी · <span lang="en">Stories along the line</span></summary><section id="stories" class="stories-section" aria-labelledby="stories-title"><div class="section-header"><div><p class="eyebrow" lang="en">03 / STORIES ALONG THE LINE</p><h2 id="stories-title" tabindex="-1">पुण्याच्या आठ गोष्टी <span lang="en">Eight stories along the line</span></h2></div><span class="badge" lang="en">Original summaries · sources included</span></div><p class="ledger-context">कथा वाचा आणि “वाचलं” दाबा. यात्रेच्या काळात प्रत्येक गोष्टीची एकदाच नोंद होते.<br><span lang="en">Reading here or on a ride card counts equally. During the season, each story adds one light on this device.</span></p><div id="story-library" class="story-library"></div></section></details>
+
+    <section class="about-section" id="about" aria-labelledby="about-title"><span class="about-symbol" aria-hidden="true">↗</span><div><p class="eyebrow" lang="en">A SMALL PUBLIC-GOOD EXPERIMENT</p><h2 id="about-title">एक प्रवास. थोडं चांगलं.</h2><p lang="en">A little good, along the way. Stories of Pune, small choices, and moments shared with willing fellow travellers.</p><p class="refusals" lang="en">No ads. No GPS. No rankings. No streaks. No photos of people.</p></div><span class="lofl-wordmark" lang="en">LOFL<span>care, in practice.</span></span></section>
+  </main>
+  <footer class="site-footer shell"><span lang="en">Made for the journey, by LOFL. · LOFL Sand design <span class="version">Local pilot · v6.1</span></span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" lang="en">Original learning content · CC BY-SA 4.0 ↗</a><a href="./review.html" class="reviewer-entry" lang="en" hidden>For reviewers</a></footer>
+</div>
+  <dialog id="stamp-dialog" class="stamp-dialog" aria-labelledby="stamp-title">
+    <div class="dialog-top"><h2 id="stamp-title">सफरेचा शिक्का <small lang="en">Seal your ride</small></h2><button id="close-stamp" class="secondary-button icon-button" aria-label="Close stamping" type="button">×</button></div>
+    <p id="stamp-route" class="stamp-route" lang="en"></p>
+    <div class="stamp-counter"><span>शिक्क्याच्या छाप <small lang="en">Ink impressions</small></span><output id="stamp-count">0</output></div>
+    <div id="stamp-paper" class="stamp-paper" aria-label="Your stamp impressions"></div>
+    <button id="press-stamp" class="primary-button stamp-press" type="button"><span class="stamp-tool" aria-hidden="true"><i></i><b></b></span><span id="stamp-action-label">शिक्का मारा · Stamp my ride</span></button>
+    <p id="stamp-status" class="stamp-status" role="status" lang="en"></p>
+    <p id="stamp-earn" class="stamp-earn"></p>
+    <div id="stamp-ai"></div>
+    <p id="stamp-cycle" class="stamp-earn" hidden>पूर्ण फेरी! End to end on one line. Your ride and notebook are saved on this device. <button id="cycle-download" class="text-button" type="button">Download notebook first ↓</button></p>
+    <button id="stamp-done" class="text-button" type="button">झालं · Done →</button>
+  </dialog>
+  <dialog id="together-dialog" class="together-dialog" aria-labelledby="together-title">
+    <div class="dialog-top"><h2 id="together-title">सोबत सफर <small lang="en">Ride together</small></h2><button id="close-together" class="secondary-button icon-button" aria-label="Close invitation" type="button">×</button></div>
+    <p id="together-route" lang="en"></p>
+    <div id="together-code" class="together-code" role="img" aria-label="QR invitation for this route and story"></div>
+    <p>एकच गोष्ट. तुमची स्वतःची उत्तरं.<br><span lang="en">Same story, separate answers. No live syncing.</span></p>
+    <p class="task-hint" lang="en">Only this route and story are in the invitation—not your notebook, choices, or station notes. Invite someone only if they’d like to join. They need a connection to open Safar Seva the first time.</p>
+    <label class="sr-only" for="together-link">Ride invitation link</label><input id="together-link" readonly spellcheck="false">
+    <p class="dialog-feedback" role="status" aria-live="polite"></p>
+    <div class="dialog-actions"><button id="copy-together" class="secondary-button" type="button">⧉ लिंक कॉपी करा · Copy link</button><button id="share-together" class="primary-button" type="button">↗ आमंत्रण द्या · Invite</button></div>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+  <noscript><p class="warning">Safar Seva needs JavaScript to save your ride on this device. Please enable it and reload.</p></noscript>
+</body>
+</html>

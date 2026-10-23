@@ -1,0 +1,506 @@
+{
+  "version": 2,
+  "license": "CC-BY-SA-4.0",
+  "tasks": [
+    {
+      "id": "learn-story-vanaz",
+      "kind": "learn",
+      "format": "story",
+      "story_id": "story-vanaz",
+      "station_ids": [
+        "vanaz"
+      ],
+      "title_mr": "ओळखीच्या नावामागचा उद्योग",
+      "title_en": "An industrial past on Paud Road",
+      "body_mr": "वनाजच्या कंपनी-इतिहासानुसार, तिचा पुण्यातील कारखाना १९६८ मध्ये सुरू झाला. कंपनीची सुरुवात मात्र १९४८ मध्ये मुंबईत झाली होती. आज रोजच्या बोलण्यात ऐकू येणारं हे नाव आपल्याला कोथरूडच्या औद्योगिक इतिहासाकडेही घेऊन जातं. ही त्या परिसरातील उद्योगाची गोष्ट आहे; स्थानकाचं नाव नेमकं कसं ठरलं याचा पुरावा नाही.",
+      "body_en": "Vanaz’s company history dates its Pune unit to 1968, following its establishment in Mumbai in 1948. A familiar name on a Metro journey can open a window onto Kothrud’s industrial past. This is a neighbourhood industry story; the source does not establish how the Metro station received its name.",
+      "minutes": 1
+    },
+    {
+      "id": "learn-story-garware",
+      "kind": "learn",
+      "format": "story",
+      "story_id": "story-garware",
+      "station_ids": [
+        "garware-college"
+      ],
+      "title_mr": "स्वातंत्र्यापूर्वीचं एक महाविद्यालय",
+      "title_en": "A college older than independent India",
+      "body_mr": "आबासाहेब गरवारे महाविद्यालय १९४५ मध्ये सुरू झालं—भारताला स्वातंत्र्य मिळण्याच्या दोन वर्षं आधी. ते चालवणाऱ्या महाराष्ट्र एज्युकेशन सोसायटीची सुरुवात १८६० मध्ये झाली. महाविद्यालयाच्या अधिकृत परिचयातून या दोन वेगवेगळ्या तारखा समजतात. संस्था आणि तिचं महाविद्यालय यांचं वय नेहमी सारखं नसतं!",
+      "body_en": "Abasaheb Garware College was established in 1945, two years before Indian independence. Its parent institution, Maharashtra Education Society, dates to 1860. The college’s official account separates the two dates—a useful reminder that an institution and one of its colleges can have different beginnings.",
+      "minutes": 1
+    },
+    {
+      "id": "learn-story-deccan",
+      "kind": "learn",
+      "format": "story",
+      "story_id": "story-deccan",
+      "station_ids": [
+        "deccan-gymkhana"
+      ],
+      "title_mr": "पुण्याहून अँटवर्पपर्यंत",
+      "title_en": "From Pune to Antwerp",
+      "body_mr": "डेक्कन जिमखाना हे फक्त परिसराचं नाव नाही; इथल्या क्रीडासंस्थेचा इतिहासही त्यात आहे. संस्थेच्या स्वतःच्या इतिहासानुसार, १९२० च्या अँटवर्प ऑलिंपिकसाठी भारतीय खेळाडू निवडण्यात तिची भूमिका होती, विशेषतः कुस्ती आणि मैदानी खेळांमध्ये. रोजच्या प्रवासातलं एक नाव जगाच्या क्रीडा-इतिहासाशी जोडलेलं असू शकतं.",
+      "body_en": "Deccan Gymkhana is both a neighbourhood name and a sporting institution. The club’s own history describes a role in selecting Indian athletes for the 1920 Antwerp Olympics, particularly in wrestling and athletics. An everyday station name can carry a connection to a much wider sporting story.",
+      "minutes": 1
+    },
+    {
+      "id": "learn-story-district-court",
+      "kind": "learn",
+      "format": "story",
+      "story_id": "story-district-court",
+      "station_ids": [
+        "district-court"
+      ],
+      "title_mr": "खालचा फलाट, वरचा फलाट",
+      "title_en": "Where two Metro lines meet",
+      "body_mr": "जिल्हा न्यायालय स्थानकावर मेट्रोच्या दोन वेगवेगळ्या मार्गांचा प्रवास जोडला जातो. महा मेट्रोच्या वर्णनानुसार, इथले भूमिगत आणि उंचावरील फलाट जिने, सरकते जिने आणि लिफ्टने जोडलेले आहेत. म्हणून इंटरचेंज म्हणजे फक्त नकाशावरचा एक ठिपका नाही—प्रवाशाला एका पातळीवरून दुसरीकडे नेणारी रचनाही आहे.",
+      "body_en": "At District Court, journeys on two Metro corridors connect. Maha Metro describes links between underground and elevated platforms using stairs, escalators and lifts. An interchange is therefore more than a dot on a map: its design helps people move between different levels. This describes the station’s design, not the current working condition of a facility.",
+      "minutes": 1
+    },
+    {
+      "id": "learn-story-ruby-hall",
+      "kind": "learn",
+      "format": "story",
+      "story_id": "story-ruby-hall",
+      "station_ids": [
+        "ruby-hall-clinic"
+      ],
+      "title_mr": "छोट्या सुरुवातीची शहरातली ओळख",
+      "title_en": "A small beginning, a familiar landmark",
+      "body_mr": "रुबी हॉल क्लिनिकच्या अधिकृत परिचयानुसार, त्याची सुरुवात १९५९ मध्ये एका छोट्या नर्सिंग होमपासून झाली. पुढे ते पुण्यातलं मोठं वैद्यकीय केंद्र बनलं. स्थानकांच्या नावांतून शहरातल्या शाळा, उद्योग, रुग्णालयं आणि इतर संस्थांची आठवण राहते. ही संस्थेच्या इतिहासाची छोटी ओळख आहे; उपचारांची शिफारस नाही.",
+      "body_en": "Ruby Hall Clinic’s official introduction dates its beginning as a small nursing home to 1959. It later grew into a larger medical centre. Station names can preserve the presence of schools, industries, hospitals and other city institutions. This is a short institutional history, not a recommendation about healthcare.",
+      "minutes": 1
+    },
+    {
+      "id": "learn-story-bund-garden",
+      "kind": "learn",
+      "format": "story",
+      "story_id": "story-bund-garden",
+      "station_ids": [
+        "bund-garden"
+      ],
+      "title_mr": "नदीकाठची बाग, जुन्या नोंदीतून",
+      "title_en": "A riverside garden in the historical record",
+      "body_mr": "महाराष्ट्राच्या जुन्या पुणे गॅझेटिअरमध्ये बंड गार्डनची नोंद मुळा-मुठा नदीकाठी असलेली बाग म्हणून येते. १८९८ मध्ये तिची देखभाल अॅग्री-हॉर्टिकल्चरल सोसायटीकडे दिल्याची नोंदही आहे. ही ऐतिहासिक माहिती आहे; आज बाग कोण चालवतं किंवा ती कधी उघडी असते, हे या जुन्या नोंदीवरून ठरवता येत नाही.",
+      "body_en": "The historical Maharashtra Gazetteer describes Bund Garden beside the Mula-Mutha river and records its handover to the Agri-Horticultural Society in 1898. This tells us something about the garden’s past. It does not establish today’s management or opening hours; an old source should not be treated as live visitor information.",
+      "minutes": 1
+    },
+    {
+      "id": "learn-story-yerawada",
+      "kind": "learn",
+      "format": "story",
+      "story_id": "story-yerawada",
+      "station_ids": [
+        "yerawada"
+      ],
+      "title_mr": "दुष्काळात काम देण्यासाठी उभा राहिलेला राजवाडा",
+      "title_en": "A palace with a famine-relief story",
+      "body_mr": "येरवडा परिसरातील आगाखान पॅलेसची गोष्ट केवळ वास्तुशिल्पाची नाही. भारताच्या सांस्कृतिक मंत्रालयाच्या इतिहासानुसार, १८९२ मध्ये त्याचं बांधकाम दुष्काळाने अडचणीत आलेल्या लोकांना रोजगार देण्यासाठी सुरू झालं. एखाद्या इमारतीकडे पाहताना तिची रचना आणि ती बांधणाऱ्या माणसांची गोष्ट—दोन्ही जाणून घेता येतात. ही परिसराची गोष्ट आहे, स्थानकात दिसणारी वास्तू नाही.",
+      "body_en": "Aga Khan Palace in the Yerawada area has a story beyond architecture. The Ministry of Culture’s account links its construction in 1892 with providing employment to people affected by famine. Buildings can be understood through both their design and the people whose work created them. This is a neighbourhood story, not a claim that the palace is inside or visible from the station.",
+      "minutes": 1
+    },
+    {
+      "id": "learn-story-ramwadi",
+      "kind": "learn",
+      "format": "story",
+      "story_id": "story-ramwadi",
+      "station_ids": [
+        "ramwadi"
+      ],
+      "title_mr": "आजचा पूर्ण मार्ग एकदम तयार झाला नव्हता",
+      "title_en": "How this journey grew, section by section",
+      "body_mr": "वनाज ते रामवाडी हा मेट्रो प्रवास टप्प्याटप्प्याने शक्य झाला. महा मेट्रोच्या कालरेषेनुसार, वनाज–गरवारे कॉलेज हा भाग ६ मार्च २०२२ रोजी सुरू झाला. रुबी हॉल क्लिनिक–रामवाडी हा पुढचा भाग ६ मार्च २०२४ रोजी सुरू झाला. आज सहज दिसणारी पूर्ण रेषा अनेक स्वतंत्र टप्प्यांनी जोडली गेली आहे.",
+      "body_en": "The Vanaz–Ramwadi journey became possible in stages. Maha Metro’s timeline dates the Vanaz–Garware College opening to 6 March 2022 and the Ruby Hall Clinic–Ramwadi opening to 6 March 2024. The continuous line we now see on a route map was assembled through several separate milestones.",
+      "minutes": 1
+    },
+    {
+      "id": "quiz-deccan",
+      "kind": "learn",
+      "format": "quiz",
+      "story_id": "story-deccan",
+      "station_ids": [
+        "deccan-gymkhana"
+      ],
+      "title_mr": "ऑलिंपिकचं शहर कोणतं?",
+      "title_en": "Which Olympic city?",
+      "body_mr": "डेक्कन जिमखान्याच्या कथेत १९२० चं कोणतं ऑलिंपिक शहर येतं?",
+      "body_en": "Which city appears in the club’s account of the 1920 Olympics?",
+      "answer_mr": "अँटवर्प · Antwerp",
+      "answer_en": "The club’s own history names Antwerp.",
+      "minutes": 1
+    },
+    {
+      "id": "quiz-garware",
+      "kind": "learn",
+      "format": "quiz",
+      "story_id": "story-garware",
+      "station_ids": [
+        "garware-college"
+      ],
+      "title_mr": "दोन तारखा, दोन सुरुवाती",
+      "title_en": "Two dates, two beginnings",
+      "body_mr": "१८६० आणि १९४५: यातली आधीची तारीख महाविद्यालयाची की ते चालवणाऱ्या सोसायटीची?",
+      "body_en": "1860 and 1945: does the earlier date belong to the college or its parent society?",
+      "answer_mr": "महाराष्ट्र एज्युकेशन सोसायटी · The parent society",
+      "answer_en": "The society dates to 1860; the college to 1945.",
+      "minutes": 1
+    },
+    {
+      "id": "quiz-ramwadi",
+      "kind": "learn",
+      "format": "quiz",
+      "story_id": "story-ramwadi",
+      "station_ids": [
+        "ramwadi"
+      ],
+      "title_mr": "एकच दिवस, दोन वेगळी वर्षं",
+      "title_en": "Same day, different years",
+      "body_mr": "वनाज–गरवारे कॉलेज आणि रुबी हॉल–रामवाडी हे भाग कोणत्या एकाच दिनांकाला, वेगवेगळ्या वर्षांत सुरू झाले?",
+      "body_en": "Which day and month do the two opening dates share?",
+      "answer_mr": "६ मार्च · 6 March",
+      "answer_en": "Maha Metro lists 6 March 2022 and 6 March 2024.",
+      "minutes": 1
+    },
+    {
+      "id": "quiz-district-court",
+      "kind": "learn",
+      "format": "quiz",
+      "story_id": "story-district-court",
+      "station_ids": [
+        "district-court"
+      ],
+      "title_mr": "नकाशावरच्या ठिपक्यापलीकडे",
+      "title_en": "Beyond the dot on a map",
+      "body_mr": "इंटरचेंजवर भूमिगत आणि उंचावरील फलाट जोडण्यासाठी कोणती साधनं असू शकतात?",
+      "body_en": "What can connect underground and elevated platforms at an interchange?",
+      "answer_mr": "जिने, सरकते जिने आणि लिफ्ट · Stairs, escalators and lifts",
+      "answer_en": "The station’s design account describes these connections, without guaranteeing live operation.",
+      "minutes": 1
+    },
+    {
+      "id": "learn-observe-clearly",
+      "kind": "learn",
+      "title_mr": "पाहिले तेवढेच नोंदवा",
+      "title_en": "Record only what you observed",
+      "body_mr": "तुम्ही नेमके काय पाहिले ते सोप्या शब्दांत लिहा. उदाहरण: ‘सकाळी १०:२० वाजता, प्रवेशद्वाराजवळील लिफ्टचे दार उघडले.’ जागा आणि वेळ लिहिल्याने नोंदीचा संदर्भ समजतो. एका निरीक्षणावरून संपूर्ण स्टेशनबद्दल निष्कर्ष काढू नका. दिसले नाही तर ‘पाहिले नाही’ निवडा. सुरक्षित सार्वजनिक जागेतूनच निरीक्षण करा; तपासण्यासाठी वाट बदलू नका.",
+      "body_en": "Describe exactly what you saw in simple words. For example: ‘At 10:20 AM, the lift door near the entrance opened.’ A place and time give the observation context. One observation does not describe the whole station. Choose ‘Not observed’ if you did not see it. Observe only from a safe public area; do not make a detour to check.",
+      "minutes": 1,
+      "format": "lesson"
+    },
+    {
+      "id": "learn-check-the-time",
+      "kind": "learn",
+      "title_mr": "नोंदीची वेळ पाहा",
+      "title_en": "Check when a note was made",
+      "body_mr": "कालची नोंद आजची खात्री देत नाही. स्टेशनवरील स्थिती बदलू शकते. नोंद वाचताना स्टेशन, नेमकी जागा आणि निरीक्षणाची वेळ पाहा. माहिती नसेल तर ती जागा रिकामी ठेवा; अंदाज लिहू नका. प्रवासासाठी मदत हवी असल्यास स्टेशन कर्मचाऱ्यांशी बोला. ही नोंद त्या वेळचे निरीक्षण आहे, सध्याच्या स्थितीची हमी नाही.",
+      "body_en": "Yesterday’s note is not a guarantee about today. Conditions at a station can change. When reading a note, check the station, exact place and observation time. Leave unknown information blank instead of guessing. Ask station staff if you need help with your journey. A note describes an observation at a particular time, not a guaranteed current condition.",
+      "minutes": 1,
+      "format": "lesson"
+    },
+    {
+      "id": "learn-fact-opinion",
+      "kind": "learn",
+      "format": "lesson",
+      "title_mr": "तथ्य की मत?",
+      "title_en": "A fact or an opinion?",
+      "body_mr": "“ही बाग १८९८ च्या नोंदीत आहे” हे स्रोत तपासून पाहता येणारं विधान आहे. “ही पुण्यातली सगळ्यात सुंदर बाग आहे” हे एखाद्याचं मत असू शकतं. गोष्ट लिहिताना दोन्हींचा फरक स्पष्ट ठेवा.",
+      "body_en": "A dated historical claim can be checked against a source. Calling a garden “the most beautiful” is an opinion. When sharing a city story, keep the distinction clear.",
+      "minutes": 1
+    },
+    {
+      "id": "learn-clear-marathi",
+      "kind": "learn",
+      "format": "lesson",
+      "title_mr": "एक वाक्य, एक कल्पना",
+      "title_en": "One sentence, one idea",
+      "body_mr": "लांब वाक्यातल्या दोन कल्पना दोन छोट्या वाक्यांत लिहून पाहा. कठीण शब्दाऐवजी रोजचा शब्द वापरा. तारीख, नाव किंवा अर्थ बदलला नाही ना, हे शेवटी तपासा. साधं लिहिणं म्हणजे माहिती कमी अचूक करणं नव्हे.",
+      "body_en": "Try splitting two ideas into two short sentences. Use a familiar word where it preserves the meaning. Check names and dates afterwards: clearer wording should remain accurate.",
+      "minutes": 1
+    },
+    {
+      "id": "give-vanaz-simplify",
+      "kind": "give",
+      "format": "simplify",
+      "story_id": "story-vanaz",
+      "target_field": "body_mr",
+      "station_ids": [
+        "vanaz"
+      ],
+      "title_mr": "ही गोष्ट आणखी सोपी करा",
+      "title_en": "Make this story easier to read",
+      "body_mr": "खालचं एक वाक्य सोप्या मराठीत मांडा. नावं, तारखा आणि अर्थ जपा. उरलेला परिच्छेद तसाच राहील.",
+      "body_en": "Make this one sentence easier to read. Keep names, dates, and meaning accurate. The rest of the passage stays intact.",
+      "minutes": 1
+    },
+    {
+      "id": "give-deccan-simplify",
+      "kind": "give",
+      "format": "simplify",
+      "story_id": "story-deccan",
+      "target_field": "body_mr",
+      "station_ids": [
+        "deccan-gymkhana"
+      ],
+      "title_mr": "ही गोष्ट आणखी सोपी करा",
+      "title_en": "Make this story easier to read",
+      "body_mr": "खालचं एक वाक्य सोप्या मराठीत मांडा. नावं, तारखा आणि अर्थ जपा. उरलेला परिच्छेद तसाच राहील.",
+      "body_en": "Make this one sentence easier to read. Keep names, dates, and meaning accurate. The rest of the passage stays intact.",
+      "minutes": 1
+    },
+    {
+      "id": "give-garware-simplify",
+      "kind": "give",
+      "format": "simplify",
+      "story_id": "story-garware",
+      "target_field": "body_mr",
+      "station_ids": [
+        "garware-college"
+      ],
+      "title_mr": "ही गोष्ट आणखी सोपी करा",
+      "title_en": "Make this story easier to read",
+      "body_mr": "खालचं एक वाक्य सोप्या मराठीत मांडा. नावं, तारखा आणि अर्थ जपा. उरलेला परिच्छेद तसाच राहील.",
+      "body_en": "Make this one sentence easier to read. Keep names, dates, and meaning accurate. The rest of the passage stays intact.",
+      "minutes": 1
+    },
+    {
+      "id": "give-bund-garden-simplify",
+      "kind": "give",
+      "format": "simplify",
+      "story_id": "story-bund-garden",
+      "target_field": "body_mr",
+      "station_ids": [
+        "bund-garden"
+      ],
+      "title_mr": "ही गोष्ट आणखी सोपी करा",
+      "title_en": "Make this story easier to read",
+      "body_mr": "खालचं एक वाक्य सोप्या मराठीत मांडा. नावं, तारखा आणि अर्थ जपा. उरलेला परिच्छेद तसाच राहील.",
+      "body_en": "Make this one sentence easier to read. Keep names, dates, and meaning accurate. The rest of the passage stays intact.",
+      "minutes": 1
+    },
+    {
+      "id": "give-ruby-hall-translate",
+      "kind": "give",
+      "format": "translate",
+      "story_id": "story-ruby-hall",
+      "target_field": "body_mr",
+      "station_ids": [
+        "ruby-hall-clinic"
+      ],
+      "title_mr": "या इंग्रजी गोष्टीला सहज मराठी द्या",
+      "title_en": "Give this English story natural Marathi",
+      "body_mr": "हे इंग्रजी वाक्य वाचून सहज मराठीत लिहा. शब्दशः भाषांतराची गरज नाही; अर्थ जपा.",
+      "body_en": "Give this English sentence natural Marathi. Keep its meaning; a word-for-word translation is not needed.",
+      "minutes": 1
+    },
+    {
+      "id": "give-yerawada-translate",
+      "kind": "give",
+      "format": "translate",
+      "story_id": "story-yerawada",
+      "target_field": "body_mr",
+      "station_ids": [
+        "yerawada"
+      ],
+      "title_mr": "या इंग्रजी गोष्टीला सहज मराठी द्या",
+      "title_en": "Give this English story natural Marathi",
+      "body_mr": "हे इंग्रजी वाक्य वाचून सहज मराठीत लिहा. शब्दशः भाषांतराची गरज नाही; अर्थ जपा.",
+      "body_en": "Give this English sentence natural Marathi. Keep its meaning; a word-for-word translation is not needed.",
+      "minutes": 1
+    },
+    {
+      "id": "give-ramwadi-headline",
+      "kind": "give",
+      "format": "headline",
+      "story_id": "story-ramwadi",
+      "target_field": "title_mr",
+      "station_ids": [
+        "ramwadi"
+      ],
+      "title_mr": "एका ओळीत उत्सुकता जागवा",
+      "title_en": "Give this story a clearer title",
+      "body_mr": "ही गोष्ट अचूक सांगणारं, वाचावंसं वाटणारं छोटं मराठी शीर्षक सुचवा. अतिशयोक्ती टाळा.",
+      "body_en": "Suggest a short, inviting Marathi title that stays faithful to the story.",
+      "minutes": 1
+    },
+    {
+      "id": "give-district-court-headline",
+      "kind": "give",
+      "format": "headline",
+      "story_id": "story-district-court",
+      "target_field": "title_mr",
+      "station_ids": [
+        "district-court"
+      ],
+      "title_mr": "एका ओळीत उत्सुकता जागवा",
+      "title_en": "Give this story a clearer title",
+      "body_mr": "ही गोष्ट अचूक सांगणारं, वाचावंसं वाटणारं छोटं मराठी शीर्षक सुचवा. अतिशयोक्ती टाळा.",
+      "body_en": "Suggest a short, inviting Marathi title that stays faithful to the story.",
+      "minutes": 1
+    },
+    {
+      "id": "give-ramwadi-source-check",
+      "kind": "give",
+      "format": "source-check",
+      "story_id": "story-ramwadi",
+      "target_field": "body_mr",
+      "station_ids": [
+        "ramwadi"
+      ],
+      "title_mr": "तारीख आणि स्रोत जुळतात का?",
+      "title_en": "Check the story against its source",
+      "body_mr": "स्रोत उघडून खालचं वाक्य तपासा. दुरुस्ती हवी असेल तर लिहा. बदल नसेल तर दुसरी कृती निवडा.",
+      "body_en": "Open the source and check this sentence. Suggest a correction if needed, or swap activities if no change is necessary.",
+      "minutes": 1
+    },
+    {
+      "id": "give-garware-source-check",
+      "kind": "give",
+      "format": "source-check",
+      "story_id": "story-garware",
+      "target_field": "body_mr",
+      "station_ids": [
+        "garware-college"
+      ],
+      "title_mr": "तारीख आणि स्रोत जुळतात का?",
+      "title_en": "Check the story against its source",
+      "body_mr": "स्रोत उघडून खालचं वाक्य तपासा. दुरुस्ती हवी असेल तर लिहा. बदल नसेल तर दुसरी कृती निवडा.",
+      "body_en": "Open the source and check this sentence. Suggest a correction if needed, or swap activities if no change is necessary.",
+      "minutes": 1
+    },
+    {
+      "id": "check-lift",
+      "kind": "check",
+      "feature": "lift",
+      "title_mr": "लिफ्टचे प्रत्यक्ष निरीक्षण",
+      "title_en": "Observe a lift",
+      "body_mr": "नेहमीच्या वाटेवरून जे प्रत्यक्ष दिसलं तेवढंच नोंदवा. खात्री नसेल तर “पाहिलं नाही” निवडा.",
+      "body_en": "Record only what you directly notice on your usual route. A closed lift door alone does not mean it is out of service. Choose “Not observed” if unsure.",
+      "minutes": 1,
+      "answerOptions": [
+        {
+          "value": "working",
+          "label_mr": "चालताना पाहिली",
+          "label_en": "Observed working"
+        },
+        {
+          "value": "not_working",
+          "label_mr": "बंद असल्याचे प्रत्यक्ष दिसले",
+          "label_en": "Observed not working"
+        },
+        {
+          "value": "not_observed",
+          "label_mr": "पाहिले नाही / खात्री नाही",
+          "label_en": "Not observed / unsure"
+        }
+      ],
+      "allow_station_scope": true
+    },
+    {
+      "id": "check-ramp",
+      "kind": "check",
+      "feature": "ramp",
+      "title_mr": "रॅम्पच्या वाटेवरील अडथळा पाहा",
+      "title_en": "Observe the route along a ramp",
+      "body_mr": "नेहमीच्या वाटेवरून जे प्रत्यक्ष दिसलं तेवढंच नोंदवा. खात्री नसेल तर “पाहिलं नाही” निवडा.",
+      "body_en": "Observe only the visible route. This does not assess the ramp’s slope or overall accessibility.",
+      "minutes": 1,
+      "answerOptions": [
+        {
+          "value": "clear",
+          "label_mr": "दिसणारी वाट मोकळी",
+          "label_en": "Visible route clear"
+        },
+        {
+          "value": "blocked",
+          "label_mr": "वाटेत अडथळा दिसला",
+          "label_en": "Obstruction observed"
+        },
+        {
+          "value": "not_observed",
+          "label_mr": "पाहिले नाही / खात्री नाही",
+          "label_en": "Not observed / unsure"
+        }
+      ],
+      "allow_station_scope": true
+    },
+    {
+      "id": "check-water",
+      "kind": "check",
+      "feature": "water",
+      "title_mr": "पाण्याच्या ठिकाणी पाणी येताना दिसलं का?",
+      "title_en": "Did you see water flowing at a water point?",
+      "body_mr": "फक्त नेहमीच्या वापरात किंवा वाटेत दिसलेलं नोंदवा. पाण्याच्या गुणवत्तेचा अंदाज देऊ नका.",
+      "body_en": "Record what you saw during normal use. This makes no claim about water quality or potability.",
+      "minutes": 1,
+      "allow_station_scope": true,
+      "answerOptions": [
+        {
+          "value": "working",
+          "label_mr": "पाणी येताना दिसलं",
+          "label_en": "Observed flowing"
+        },
+        {
+          "value": "not_working",
+          "label_mr": "पाणी येत नसल्याचं दिसलं",
+          "label_en": "Observed not flowing"
+        },
+        {
+          "value": "not_observed",
+          "label_mr": "पाहिलं नाही / खात्री नाही",
+          "label_en": "Not observed / unsure"
+        }
+      ]
+    },
+    {
+      "id": "check-lighting",
+      "kind": "check",
+      "feature": "lighting",
+      "title_mr": "अंधारात एक्झिटजवळ दिवे चालू दिसले का?",
+      "title_en": "Were exit lights on after dark?",
+      "body_mr": "बाहेर अंधार असेल आणि एक्झिट प्रत्यक्ष दिसत असेल तेव्हाच उत्तर द्या.",
+      "body_en": "Answer only if it is dark outside and you can directly see the exit lighting.",
+      "minutes": 1,
+      "allow_station_scope": true,
+      "answerOptions": [
+        {
+          "value": "working",
+          "label_mr": "दिवे चालू दिसले",
+          "label_en": "Observed on"
+        },
+        {
+          "value": "not_working",
+          "label_mr": "दिवे बंद दिसले",
+          "label_en": "Observed off"
+        },
+        {
+          "value": "not_observed",
+          "label_mr": "पाहिलं नाही / खात्री नाही",
+          "label_en": "Not observed / unsure"
+        }
+      ]
+    }
+  ],
+  "legacy_tasks": [
+    {
+      "id": "give-clearer-observation",
+      "kind": "give",
+      "source_task_id": "learn-observe-clearly",
+      "title_mr": "पहिली शिकण्याची सूचना सोपी करा",
+      "title_en": "Make the observation lesson clearer",
+      "body_mr": "‘पाहिले तेवढेच नोंदवा’ या सूचनेतील एक किंवा दोन वाक्ये आणखी सोप्या मराठीत लिहा. अर्थ, जागा-वेळ लिहिण्याची सूचना आणि सुरक्षित निरीक्षणाची अट जपा. नावे किंवा वैयक्तिक माहिती लिहू नका. तुमचा मसुदा या फोनवर जतन होईल. तो तपासणीसाठी आपोआप पाठवला जाणार नाही; नंतर निर्यात करून स्वतः शेअर करता येईल.",
+      "body_en": "Rewrite one or two sentences from ‘Record only what you observed’ in simpler Marathi. Keep the meaning, the place-and-time prompt and the safe-observation condition. Do not include names or personal information. Your draft stays on this device. It is not automatically submitted for review; you can export it and choose to share it later.",
+      "minutes": 2
+    },
+    {
+      "id": "give-clearer-freshness",
+      "kind": "give",
+      "source_task_id": "learn-check-the-time",
+      "title_mr": "वेळेबद्दलची सूचना सोपी करा",
+      "title_en": "Make the freshness lesson clearer",
+      "body_mr": "‘नोंदीची वेळ पाहा’ या सूचनेतील एक किंवा दोन वाक्ये आणखी सोप्या मराठीत लिहा. जुनी नोंद सध्याची हमी देत नाही आणि अज्ञात माहितीचा अंदाज लिहायचा नाही, हे स्पष्ट ठेवा. नावे किंवा वैयक्तिक माहिती लिहू नका. तुमचा मसुदा या फोनवर जतन होईल. निर्यात केल्यानंतरच तुम्ही तो स्वतः तपासणीसाठी शेअर करू शकता.",
+      "body_en": "Rewrite one or two sentences from ‘Check when a note was made’ in simpler Marathi. Keep clear that an old note is not a live guarantee and unknown details must not be guessed. Do not include names or personal information. Your draft stays on this device. After exporting, you can choose to share it for review yourself.",
+      "minutes": 2
+    }
+  ]
+}

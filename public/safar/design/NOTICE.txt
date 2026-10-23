@@ -1,0 +1,6 @@
+LOFL Design System / Tool layer v0.4 (kit 2026-10-24)
+Source: supplied lofl-design-system/design folder, Leap of Faith Labs.
+CSS, logo, and tokens: CC-BY-SA-4.0, Leap of Faith Labs.
+Fonts: SIL Open Font License 1.1; original notices in fonts/LICENSES/.
+The copied design assets are unchanged. Safar Seva application layout adaptations
+are in ../../styles.css. The app uses the Tool/Sand layer only.

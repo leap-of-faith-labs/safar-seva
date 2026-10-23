@@ -1,0 +1,132 @@
+/* ============================================================================
+   LOFL — Site layer  ·  the lofl.world look, for pages people read
+   ----------------------------------------------------------------------------
+   For websites, one-pagers, landing pages, explainers, email-safe pages.
+   This is "LOFL Design Language — extract v1" (20-infrastructure/lofl-design/,
+   same file in lofl-ai/assets/ and LOFL Cards/design-system/), with three changes:
+     1. Fonts load from design/fonts/ (no Google call — works offline).
+     2. Devanagari fallbacks added to every font stack.
+     3. Three tokens added from lofl-world/styles.css: --space-section,
+        --maxw-narrow, --shadow-sm.  Nothing else changed — the original sits
+        untouched in sources/vault-lofl-design-v1/.
+
+   Legacy names kept so this matches the live site 1:1:
+     --indigo  = Pine Teal (links)      --saffron = Warm Ember (warm fills)
+
+   Building a tool (tracker, register, cockpit)?  Use lofl-tool.css instead.
+   Do not load both on one page: they share some names (--ink, --line) with
+   different values.  See README → "Two layers".
+
+   SPDX-License-Identifier: CC-BY-SA-4.0 · © 2026 Leap of Faith Labs
+   ============================================================================ */
+
+@import url('../fonts/lofl-fonts.css');
+
+:root {
+  /* Surfaces & ink — soft sand + dark slate grey */
+  --paper:   #FAF4E9;  --paper-2: #F1E8D7;  --paper-3: #EBE1CD;
+  --ink:     #28332E;  /* dark slate grey-green — headings, dark bands */
+  --ink-2:   #6A6B54;  /* soft slate — body text */
+  --ink-3:   #7B7838;  /* muted olive — captions, meta, eyebrows */
+  --line:      rgba(40, 51, 46, .14);
+  --line-soft: rgba(40, 51, 46, .08);
+
+  /* Accents (LOFLOS) */
+  --indigo:  #1F6F5C;  /* Pine Teal — links, emphasis (name kept for compat) */
+  --teal:    #1F6F5C;  /* Pine Teal — live / commons */
+  --saffron: #C2592A;  /* Warm Ember — warm fills (name kept for compat) */
+  --saffron-dk: #9F4720; /* ember safe as text on sand */
+  --olive:   #7B7838;  --palm: #3E8655;
+
+  /* The LOFL sun-logo spectrum (retro refraction) */
+  --c-red: #BF4131;  --c-orange: #E07D38;  --c-yellow: #E9B23E;
+  --c-green: #6B9A40; --c-blue: #346FA6;  --c-indigo: #2C5C8A;  --c-violet: #7B4F9E;
+
+  /* Type — Cormorant Garamond (display) · Inter (body) · Jost (logo/labels) · Noto Deva */
+  --font-display: "Cormorant Garamond", "Noto Serif Devanagari", Georgia, serif;
+  --font-sans:    "Inter", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-geo:     "Jost", "Century Gothic", "Futura", system-ui, sans-serif;
+  --font-deva:    "Noto Serif Devanagari", var(--font-display);
+
+  /* Fluid type scale */
+  --step--1: clamp(0.82rem, 0.79rem + 0.15vw, 0.92rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
+  --step-1:  clamp(1.2rem, 1.12rem + 0.4vw, 1.45rem);
+  --step-2:  clamp(1.45rem, 1.3rem + 0.75vw, 1.95rem);
+  --step-3:  clamp(1.8rem, 1.55rem + 1.25vw, 2.7rem);
+  --step-4:  clamp(2.2rem, 1.8rem + 2vw, 3.6rem);
+  --step-5:  clamp(2.7rem, 2.05rem + 3.2vw, 5rem);
+
+  /* Shape & depth */
+  --space-section: clamp(3.5rem, 2rem + 6vw, 7rem);
+  --radius: 14px; --radius-lg: 22px; --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(31,27,22,.05), 0 2px 8px rgba(31,27,22,.05);
+  --shadow: 0 10px 30px -12px rgba(40,51,46,.22);
+  --shadow-lg: 0 30px 60px -28px rgba(40,51,46,.35);
+  --maxw: 1140px; --maxw-narrow: 760px;
+}
+
+/* ---- Base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font-sans); font-size: var(--step-0); line-height: 1.65;
+  color: var(--ink-2); background: var(--paper); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-height: 1.1; font-weight: 600; letter-spacing: 0; text-wrap: balance; }
+p { text-wrap: pretty; }
+a { color: var(--indigo); text-underline-offset: 2px; } a:hover { color: var(--saffron-dk); }
+::selection { background: var(--saffron); color: #fff; }
+:focus-visible { outline: 2.5px solid var(--indigo); outline-offset: 3px; border-radius: 4px; }
+.deva { font-family: var(--font-deva); font-weight: 500; }
+
+/* ---- Layout ---- */
+.container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(1.1rem, 0.5rem + 3vw, 2.5rem); }
+.narrow   { max-width: var(--maxw-narrow); }
+.section  { padding-block: var(--space-section); }
+.band     { background: var(--paper-2); }
+.band-ink { background: var(--ink); color: rgba(251,246,236,.8); }
+.band-ink h1, .band-ink h2, .band-ink h3, .band-ink h4 { color: var(--paper); }
+
+/* ---- Eyebrow / kicker ---- */
+.eyebrow { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--font-geo);
+  font-size: var(--step--1); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+.eyebrow::before { content: ""; width: 26px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--c-orange), var(--c-violet)); }
+
+/* ---- Buttons ---- */
+.btn { display: inline-flex; align-items: center; gap: .6rem; font-family: var(--font-sans); font-weight: 600;
+  font-size: var(--step-0); line-height: 1; text-decoration: none; padding: .85em 1.4em; border-radius: var(--radius-pill);
+  border: 1.5px solid transparent; cursor: pointer; transition: transform .18s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: #000; color: #fff; box-shadow: var(--shadow); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink-3); }
+.btn-ghost:hover { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); transform: translateY(-2px); }
+.band-ink .btn-primary { background: var(--paper); color: var(--ink); }
+.band-ink .btn-ghost { color: var(--paper); border-color: rgba(251,246,236,.62); }
+
+/* ---- Card ---- */
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: clamp(1.3rem, 1rem + 1vw, 1.9rem); display: flex; flex-direction: column; gap: .6rem;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.card-hover:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--ink) 22%, transparent); }
+.card .top-rule { height: 4px; width: 48px; border-radius: 4px; background: var(--saffron); }
+
+/* ---- Wordmark lockup: sun logo + "LOFL" in Jost caps + small expansion ---- */
+.lofl-lockup { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--ink); }
+.lofl-lockup img, .lofl-lockup svg { width: 2.1rem; height: 2.1rem; }
+.lofl-lockup b { display: block; font-family: var(--font-geo); font-weight: 600; letter-spacing: .22em; font-size: 1.05rem; line-height: 1; }
+.lofl-lockup small { display: block; font-family: var(--font-geo); font-size: .68rem; letter-spacing: .08em; color: var(--ink-3); margin-top: .2rem; }
+
+/* ---- Spectrum accents (the signature) ---- */
+.spectrum-rule { height: 4px; border-radius: 4px; background: linear-gradient(90deg,
+  var(--c-red), var(--c-orange), var(--c-yellow), var(--c-green), var(--c-blue), var(--c-violet)); }
+.spectrum-text { color: var(--ink); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .spectrum-text { background: linear-gradient(96deg, var(--c-red), var(--c-orange), var(--c-yellow), var(--c-green), var(--c-blue), var(--c-violet));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+}
+
+/* ---- Reveal-on-scroll (progressive; visible without JS) ---- */
+.reveal { opacity: 1; }
+html.js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .55s cubic-bezier(.2,.85,.25,1); }
+html.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html.js .reveal { opacity: 1; transform: none; transition: none; } .btn, .card { transition: none; } }

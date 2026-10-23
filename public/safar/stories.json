@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-10-24-seed",
+  "updatedAt": "2026-10-24T00:00:00+05:30",
+  "stories": [
+    {
+      "id": "story-vanaz",
+      "station_ids": [
+        "vanaz"
+      ],
+      "version": 1,
+      "title_mr": "ओळखीच्या नावामागचा उद्योग",
+      "title_en": "An industrial past on Paud Road",
+      "body_mr": "वनाजच्या कंपनी-इतिहासानुसार, तिचा पुण्यातील कारखाना १९६८ मध्ये सुरू झाला. कंपनीची सुरुवात मात्र १९४८ मध्ये मुंबईत झाली होती. आज रोजच्या बोलण्यात ऐकू येणारं हे नाव आपल्याला कोथरूडच्या औद्योगिक इतिहासाकडेही घेऊन जातं. ही त्या परिसरातील उद्योगाची गोष्ट आहे; स्थानकाचं नाव नेमकं कसं ठरलं याचा पुरावा नाही.",
+      "body_en": "Vanaz’s company history dates its Pune unit to 1968, following its establishment in Mumbai in 1948. A familiar name on a Metro journey can open a window onto Kothrud’s industrial past. This is a neighbourhood industry story; the source does not establish how the Metro station received its name.",
+      "sources": [
+        {
+          "title": "Vanaz Engineers — Company Profile",
+          "url": "https://www.vanaz.com/",
+          "checkedOn": "2026-10-24"
+        }
+      ],
+      "provenance": "LOFL original summary of the cited source; no claim of independent historical verification.",
+      "appliedContributions": []
+    },
+    {
+      "id": "story-garware",
+      "station_ids": [
+        "garware-college"
+      ],
+      "version": 1,
+      "title_mr": "स्वातंत्र्यापूर्वीचं एक महाविद्यालय",
+      "title_en": "A college older than independent India",
+      "body_mr": "आबासाहेब गरवारे महाविद्यालय १९४५ मध्ये सुरू झालं—भारताला स्वातंत्र्य मिळण्याच्या दोन वर्षं आधी. ते चालवणाऱ्या महाराष्ट्र एज्युकेशन सोसायटीची सुरुवात १८६० मध्ये झाली. महाविद्यालयाच्या अधिकृत परिचयातून या दोन वेगवेगळ्या तारखा समजतात. संस्था आणि तिचं महाविद्यालय यांचं वय नेहमी सारखं नसतं!",
+      "body_en": "Abasaheb Garware College was established in 1945, two years before Indian independence. Its parent institution, Maharashtra Education Society, dates to 1860. The college’s official account separates the two dates—a useful reminder that an institution and one of its colleges can have different beginnings.",
+      "sources": [
+        {
+          "title": "MES Abasaheb Garware College — Principal’s Message",
+          "url": "https://garwarecollege.mespune.in/about-us/principals-message/",
+          "checkedOn": "2026-10-24"
+        }
+      ],
+      "provenance": "LOFL original summary of the cited source; no claim of independent historical verification.",
+      "appliedContributions": []
+    },
+    {
+      "id": "story-deccan",
+      "station_ids": [
+        "deccan-gymkhana"
+      ],
+      "version": 1,
+      "title_mr": "पुण्याहून अँटवर्पपर्यंत",
+      "title_en": "From Pune to Antwerp",
+      "body_mr": "डेक्कन जिमखाना हे फक्त परिसराचं नाव नाही; इथल्या क्रीडासंस्थेचा इतिहासही त्यात आहे. संस्थेच्या स्वतःच्या इतिहासानुसार, १९२० च्या अँटवर्प ऑलिंपिकसाठी भारतीय खेळाडू निवडण्यात तिची भूमिका होती, विशेषतः कुस्ती आणि मैदानी खेळांमध्ये. रोजच्या प्रवासातलं एक नाव जगाच्या क्रीडा-इतिहासाशी जोडलेलं असू शकतं.",
+      "body_en": "Deccan Gymkhana is both a neighbourhood name and a sporting institution. The club’s own history describes a role in selecting Indian athletes for the 1920 Antwerp Olympics, particularly in wrestling and athletics. An everyday station name can carry a connection to a much wider sporting story.",
+      "sources": [
+        {
+          "title": "Deccan Gymkhana — History",
+          "url": "https://deccangymkhana.co.in/history/",
+          "checkedOn": "2026-10-24"
+        }
+      ],
+      "provenance": "LOFL original summary of the cited source; no claim of independent historical verification.",
+      "appliedContributions": []
+    },
+    {
+      "id": "story-district-court",
+      "station_ids": [
+        "district-court"
+      ],
+      "version": 1,
+      "title_mr": "खालचा फलाट, वरचा फलाट",
+      "title_en": "Where two Metro lines meet",
+      "body_mr": "जिल्हा न्यायालय स्थानकावर मेट्रोच्या दोन वेगवेगळ्या मार्गांचा प्रवास जोडला जातो. महा मेट्रोच्या वर्णनानुसार, इथले भूमिगत आणि उंचावरील फलाट जिने, सरकते जिने आणि लिफ्टने जोडलेले आहेत. म्हणून इंटरचेंज म्हणजे फक्त नकाशावरचा एक ठिपका नाही—प्रवाशाला एका पातळीवरून दुसरीकडे नेणारी रचनाही आहे.",
+      "body_en": "At District Court, journeys on two Metro corridors connect. Maha Metro describes links between underground and elevated platforms using stairs, escalators and lifts. An interchange is therefore more than a dot on a map: its design helps people move between different levels. This describes the station’s design, not the current working condition of a facility.",
+      "sources": [
+        {
+          "title": "Maha Metro — District Court station",
+          "url": "https://www.punemetrorail.org/station/District%20Court/",
+          "checkedOn": "2026-10-24"
+        }
+      ],
+      "provenance": "LOFL original summary of the cited source; no claim of independent historical verification.",
+      "appliedContributions": []
+    },
+    {
+      "id": "story-ruby-hall",
+      "station_ids": [
+        "ruby-hall-clinic"
+      ],
+      "version": 1,
+      "title_mr": "छोट्या सुरुवातीची शहरातली ओळख",
+      "title_en": "A small beginning, a familiar landmark",
+      "body_mr": "रुबी हॉल क्लिनिकच्या अधिकृत परिचयानुसार, त्याची सुरुवात १९५९ मध्ये एका छोट्या नर्सिंग होमपासून झाली. पुढे ते पुण्यातलं मोठं वैद्यकीय केंद्र बनलं. स्थानकांच्या नावांतून शहरातल्या शाळा, उद्योग, रुग्णालयं आणि इतर संस्थांची आठवण राहते. ही संस्थेच्या इतिहासाची छोटी ओळख आहे; उपचारांची शिफारस नाही.",
+      "body_en": "Ruby Hall Clinic’s official introduction dates its beginning as a small nursing home to 1959. It later grew into a larger medical centre. Station names can preserve the presence of schools, industries, hospitals and other city institutions. This is a short institutional history, not a recommendation about healthcare.",
+      "sources": [
+        {
+          "title": "Ruby Hall Clinic — About the institution",
+          "url": "https://rubyhall.com/",
+          "checkedOn": "2026-10-24"
+        }
+      ],
+      "provenance": "LOFL original summary of the cited source; no claim of independent historical verification.",
+      "appliedContributions": []
+    },
+    {
+      "id": "story-bund-garden",
+      "station_ids": [
+        "bund-garden"
+      ],
+      "version": 1,
+      "title_mr": "नदीकाठची बाग, जुन्या नोंदीतून",
+      "title_en": "A riverside garden in the historical record",
+      "body_mr": "महाराष्ट्राच्या जुन्या पुणे गॅझेटिअरमध्ये बंड गार्डनची नोंद मुळा-मुठा नदीकाठी असलेली बाग म्हणून येते. १८९८ मध्ये तिची देखभाल अॅग्री-हॉर्टिकल्चरल सोसायटीकडे दिल्याची नोंदही आहे. ही ऐतिहासिक माहिती आहे; आज बाग कोण चालवतं किंवा ती कधी उघडी असते, हे या जुन्या नोंदीवरून ठरवता येत नाही.",
+      "body_en": "The historical Maharashtra Gazetteer describes Bund Garden beside the Mula-Mutha river and records its handover to the Agri-Horticultural Society in 1898. This tells us something about the garden’s past. It does not establish today’s management or opening hours; an old source should not be treated as live visitor information.",
+      "sources": [
+        {
+          "title": "Maharashtra Gazetteer — Parks and Gardens",
+          "url": "https://gazetteers.maharashtra.gov.in/cultural.maharashtra.gov.in/english/gazetteer/Poona/PART%20V/Chap%20%2817%29/Directorate%20Of%20Parks%20And%20Gardens-2.htm",
+          "checkedOn": "2026-10-24"
+        }
+      ],
+      "provenance": "LOFL original summary of the cited source; no claim of independent historical verification.",
+      "appliedContributions": []
+    },
+    {
+      "id": "story-yerawada",
+      "station_ids": [
+        "yerawada"
+      ],
+      "version": 1,
+      "title_mr": "दुष्काळात काम देण्यासाठी उभा राहिलेला राजवाडा",
+      "title_en": "A palace with a famine-relief story",
+      "body_mr": "येरवडा परिसरातील आगाखान पॅलेसची गोष्ट केवळ वास्तुशिल्पाची नाही. भारताच्या सांस्कृतिक मंत्रालयाच्या इतिहासानुसार, १८९२ मध्ये त्याचं बांधकाम दुष्काळाने अडचणीत आलेल्या लोकांना रोजगार देण्यासाठी सुरू झालं. एखाद्या इमारतीकडे पाहताना तिची रचना आणि ती बांधणाऱ्या माणसांची गोष्ट—दोन्ही जाणून घेता येतात. ही परिसराची गोष्ट आहे, स्थानकात दिसणारी वास्तू नाही.",
+      "body_en": "Aga Khan Palace in the Yerawada area has a story beyond architecture. The Ministry of Culture’s account links its construction in 1892 with providing employment to people affected by famine. Buildings can be understood through both their design and the people whose work created them. This is a neighbourhood story, not a claim that the palace is inside or visible from the station.",
+      "sources": [
+        {
+          "title": "Ministry of Culture — Aga Khan Palace",
+          "url": "https://amritmahotsav.nic.in/district-reopsitory-detail.htm?25247=",
+          "checkedOn": "2026-10-24"
+        }
+      ],
+      "provenance": "LOFL original summary of the cited source; no claim of independent historical verification.",
+      "appliedContributions": []
+    },
+    {
+      "id": "story-ramwadi",
+      "station_ids": [
+        "ramwadi"
+      ],
+      "version": 1,
+      "title_mr": "आजचा पूर्ण मार्ग एकदम तयार झाला नव्हता",
+      "title_en": "How this journey grew, section by section",
+      "body_mr": "वनाज ते रामवाडी हा मेट्रो प्रवास टप्प्याटप्प्याने शक्य झाला. महा मेट्रोच्या कालरेषेनुसार, वनाज–गरवारे कॉलेज हा भाग ६ मार्च २०२२ रोजी सुरू झाला. रुबी हॉल क्लिनिक–रामवाडी हा पुढचा भाग ६ मार्च २०२४ रोजी सुरू झाला. आज सहज दिसणारी पूर्ण रेषा अनेक स्वतंत्र टप्प्यांनी जोडली गेली आहे.",
+      "body_en": "The Vanaz–Ramwadi journey became possible in stages. Maha Metro’s timeline dates the Vanaz–Garware College opening to 6 March 2022 and the Ruby Hall Clinic–Ramwadi opening to 6 March 2024. The continuous line we now see on a route map was assembled through several separate milestones.",
+      "sources": [
+        {
+          "title": "Maha Metro — Three years of Pune Metro",
+          "url": "https://www.punemetrorail.org/download/3yearPune%20-English%20PR.pdf",
+          "checkedOn": "2026-10-24"
+        }
+      ],
+      "provenance": "LOFL original summary of the cited source; no claim of independent historical verification.",
+      "appliedContributions": []
+    }
+  ],
+  "receipts": []
+}

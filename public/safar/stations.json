@@ -1,0 +1,464 @@
+{
+  "version": 1,
+  "source": {
+    "title": "Pune Metro Rail Project — Project Profile, Line 2 (Vanaz–Ramwadi)",
+    "url": "https://www.punemetrorail.org/project-profile?lang=en-US",
+    "checked_on": "2026-10-24",
+    "note": "Purple Line and the upcoming Hinjewadi Line are a simplified station list; check against official Maha Metro / PMRDA maps."
+  },
+  "stations": [
+    {
+      "id": "vanaz",
+      "name_mr": "वनाज",
+      "name_en": "Vanaz",
+      "order": 1,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "anand-nagar",
+      "name_mr": "आनंद नगर",
+      "name_en": "Anand Nagar",
+      "order": 2,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "ideal-colony",
+      "name_mr": "आयडियल कॉलनी",
+      "name_en": "Ideal Colony",
+      "order": 3,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "nal-stop",
+      "name_mr": "नळ स्टॉप",
+      "name_en": "Nal Stop",
+      "order": 4,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "garware-college",
+      "name_mr": "गरवारे कॉलेज",
+      "name_en": "Garware College",
+      "order": 5,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "deccan-gymkhana",
+      "name_mr": "डेक्कन जिमखाना",
+      "name_en": "Deccan Gymkhana",
+      "order": 6,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "chhatrapati-sambhaji-udyan",
+      "name_mr": "छत्रपती संभाजी उद्यान",
+      "name_en": "Chhatrapati Sambhaji Udyan",
+      "order": 7,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "pmc",
+      "name_mr": "पुणे महानगरपालिका",
+      "name_en": "PMC",
+      "order": 8,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "district-court",
+      "name_mr": "जिल्हा न्यायालय",
+      "name_en": "District Court",
+      "order": 9,
+      "aliases": [
+        "Civil Court"
+      ],
+      "lines": [
+        "aqua",
+        "purple"
+      ],
+      "interchange": true
+    },
+    {
+      "id": "mangalwar-peth",
+      "name_mr": "मंगळवार पेठ",
+      "name_en": "Mangalwar Peth",
+      "order": 10,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "pune-railway-station",
+      "name_mr": "पुणे रेल्वे स्थानक",
+      "name_en": "Pune Railway Station",
+      "order": 11,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "ruby-hall-clinic",
+      "name_mr": "रुबी हॉल क्लिनिक",
+      "name_en": "Ruby Hall Clinic",
+      "order": 12,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "bund-garden",
+      "name_mr": "बंड गार्डन",
+      "name_en": "Bund Garden",
+      "order": 13,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "yerawada",
+      "name_mr": "येरवडा",
+      "name_en": "Yerawada",
+      "order": 14,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "kalyani-nagar",
+      "name_mr": "कल्याणी नगर",
+      "name_en": "Kalyani Nagar",
+      "order": 15,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "ramwadi",
+      "name_mr": "रामवाडी",
+      "name_en": "Ramwadi",
+      "order": 16,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ]
+    },
+    {
+      "id": "pcmc",
+      "name_mr": "पिंपरी चिंचवड महानगरपालिका",
+      "name_en": "PCMC",
+      "order": 17,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "sant-tukaram-nagar",
+      "name_mr": "संत तुकाराम नगर",
+      "name_en": "Sant Tukaram Nagar",
+      "order": 18,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "bhosari",
+      "name_mr": "भोसरी (नाशिक फाटा)",
+      "name_en": "Bhosari (Nashik Phata)",
+      "order": 19,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "kasarwadi",
+      "name_mr": "कासारवाडी",
+      "name_en": "Kasarwadi",
+      "order": 20,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "phugewadi",
+      "name_mr": "फुगेवाडी",
+      "name_en": "Phugewadi",
+      "order": 21,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "dapodi",
+      "name_mr": "दापोडी",
+      "name_en": "Dapodi",
+      "order": 22,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "bopodi",
+      "name_mr": "बोपोडी",
+      "name_en": "Bopodi",
+      "order": 23,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "khadki",
+      "name_mr": "खडकी",
+      "name_en": "Khadki",
+      "order": 24,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "range-hills",
+      "name_mr": "रेंज हिल्स",
+      "name_en": "Range Hills",
+      "order": 25,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "shivajinagar",
+      "name_mr": "शिवाजीनगर",
+      "name_en": "Shivajinagar",
+      "order": 26,
+      "aliases": [],
+      "lines": [
+        "purple",
+        "line3"
+      ],
+      "interchange": true
+    },
+    {
+      "id": "budhwar-peth",
+      "name_mr": "बुधवार पेठ",
+      "name_en": "Budhwar Peth",
+      "order": 27,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "mandai",
+      "name_mr": "मंडई",
+      "name_en": "Mandai",
+      "order": 28,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "swargate",
+      "name_mr": "स्वारगेट",
+      "name_en": "Swargate",
+      "order": 29,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ]
+    },
+    {
+      "id": "hinjewadi-megapolis",
+      "name_mr": "मेगापोलिस सर्कल",
+      "name_en": "Megapolis Circle",
+      "order": 30,
+      "aliases": [],
+      "lines": [
+        "line3"
+      ]
+    },
+    {
+      "id": "hinjewadi-phase-2",
+      "name_mr": "हिंजवडी फेज २",
+      "name_en": "Hinjewadi Phase 2",
+      "order": 31,
+      "aliases": [],
+      "lines": [
+        "line3"
+      ]
+    },
+    {
+      "id": "hinjewadi",
+      "name_mr": "हिंजवडी",
+      "name_en": "Hinjewadi",
+      "order": 32,
+      "aliases": [],
+      "lines": [
+        "line3"
+      ]
+    },
+    {
+      "id": "wakad-chowk",
+      "name_mr": "वाकड चौक",
+      "name_en": "Wakad Chowk",
+      "order": 33,
+      "aliases": [],
+      "lines": [
+        "line3"
+      ]
+    },
+    {
+      "id": "balewadi-stadium",
+      "name_mr": "बालेवाडी स्टेडियम",
+      "name_en": "Balewadi Stadium",
+      "order": 34,
+      "aliases": [],
+      "lines": [
+        "line3"
+      ]
+    },
+    {
+      "id": "balewadi-phata",
+      "name_mr": "बालेवाडी फाटा",
+      "name_en": "Balewadi Phata",
+      "order": 35,
+      "aliases": [],
+      "lines": [
+        "line3"
+      ]
+    },
+    {
+      "id": "baner",
+      "name_mr": "बाणेर",
+      "name_en": "Baner",
+      "order": 36,
+      "aliases": [],
+      "lines": [
+        "line3"
+      ]
+    },
+    {
+      "id": "savitribai-phule-university",
+      "name_mr": "सावित्रीबाई फुले पुणे विद्यापीठ",
+      "name_en": "Pune University",
+      "order": 37,
+      "aliases": [],
+      "lines": [
+        "line3"
+      ]
+    },
+    {
+      "id": "agriculture-college",
+      "name_mr": "कृषी महाविद्यालय",
+      "name_en": "Agriculture College",
+      "order": 38,
+      "aliases": [],
+      "lines": [
+        "line3"
+      ]
+    }
+  ],
+  "seed_observations": [],
+  "lines": [
+    {
+      "id": "aqua",
+      "name_mr": "ॲक्वा लाइन",
+      "name_en": "Aqua Line",
+      "status": "running",
+      "stations": [
+        "vanaz",
+        "anand-nagar",
+        "ideal-colony",
+        "nal-stop",
+        "garware-college",
+        "deccan-gymkhana",
+        "chhatrapati-sambhaji-udyan",
+        "pmc",
+        "district-court",
+        "mangalwar-peth",
+        "pune-railway-station",
+        "ruby-hall-clinic",
+        "bund-garden",
+        "yerawada",
+        "kalyani-nagar",
+        "ramwadi"
+      ]
+    },
+    {
+      "id": "purple",
+      "name_mr": "पर्पल लाइन",
+      "name_en": "Purple Line",
+      "status": "running",
+      "stations": [
+        "pcmc",
+        "sant-tukaram-nagar",
+        "bhosari",
+        "kasarwadi",
+        "phugewadi",
+        "dapodi",
+        "bopodi",
+        "khadki",
+        "range-hills",
+        "shivajinagar",
+        "district-court",
+        "budhwar-peth",
+        "mandai",
+        "swargate"
+      ]
+    },
+    {
+      "id": "line3",
+      "name_mr": "हिंजवडी लाइन",
+      "name_en": "Hinjewadi Line",
+      "status": "upcoming",
+      "stations": [
+        "hinjewadi-megapolis",
+        "hinjewadi-phase-2",
+        "hinjewadi",
+        "wakad-chowk",
+        "balewadi-stadium",
+        "balewadi-phata",
+        "baner",
+        "savitribai-phule-university",
+        "agriculture-college",
+        "shivajinagar"
+      ]
+    }
+  ]
+}

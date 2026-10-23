@@ -1,0 +1,224 @@
+/* ============================================================================
+   LOFL — Tool layer  ·  Design Language v0.4 (2026-07-13), as one stylesheet
+   ----------------------------------------------------------------------------
+   For interactive tools, trackers, registers, cockpits, A4 plates — the "shelf".
+   Values are the canonical "LOFL · Sand" fallbacks used across the v0.4
+   Component Library (lofl.world/tools/design-language.html).
+   lofl-theme.js re-points these same variables to any of the 13 refractions.
+
+   Use:   <link rel="stylesheet" href="design/css/lofl-tool.css">
+          <script src="design/js/lofl-theme.js"></script>        (optional, theme switch)
+   Fonts: self-hosted, no network (design/fonts/lofl-fonts.css).
+   Rules: light/warm paper only · no drop shadows ("paper doesn't float") ·
+          no scores on people · honest states shown · blocked = banner.
+
+   SPDX-License-Identifier: CC-BY-SA-4.0 · © 2026 Leap of Faith Labs
+   ============================================================================ */
+
+@import url('../fonts/lofl-fonts.css');
+
+:root {
+  /* ── surfaces & ink ─────────────────────────────────────────────────────── */
+  --desk:      #EBE1CD;   /* the table the paper sits on                      */
+  --bg:        #F1E8D7;   /* paper — page base                                */
+  --surface:   #FAF4E9;   /* card / panel fill                                */
+  --surface2:  #F1E8D7;   /* table header, quiet fill                         */
+  --ink:       #28332E;   /* text, headings                                   */
+  --soft:      #4C544C;   /* secondary text                                   */
+  --muted:     #6A6B54;   /* captions, meta (4.49:1 on --bg — use ≥14px)      */
+  --line:      #C1BDAE;   /* inner dividers (1px dashed)                      */
+  --line2:     #A5A397;   /* frames (1.5px solid)                             */
+  --line3:     #D3CDBE;   /* faint rules                                      */
+
+  /* ── accents ────────────────────────────────────────────────────────────── */
+  --primary:     #C2592A;  /* Terracotta / Warm Ember — accents, the press    */
+  --primary-ink: #F1E8D7;  /* text that sits ON --primary                     */
+  --head:        #2C5C8A;  /* Indigo — headers, section numbers, ladders      */
+  --head-deep:   color-mix(in oklab, var(--head) 78%, black);
+  --head-text:   #2C5C8A;
+  --link:        #1F6F5C;  /* Pine Teal                                       */
+  --link-hover:  #9F4720;
+  --chip-ink:    var(--bg);
+
+  /* ── the four suits (v0.4 tool mapping — see OPEN-DECISIONS.md §1) ──────── */
+  --learning: #7B4F9E;  --learning-tint: #E7DBDE;  --learning-deep: #7B4F9E;  --learning-ink: #FAF4E9;
+  --skill:    #BF4131;  --skill-tint:    #F1D9CE;  --skill-deep:    #953D30;  --skill-ink:    #FAF4E9;
+  --culture:  #E9B23E;  --culture-tint:  #F7EACF;  --culture-deep:  #9A7420;  --culture-ink:  #28332E;
+  --green:    #6B9A40;  --green-tint:    #E5E7D0;  --green-deep:    #587D3B;  --green-ink:    #28332E;
+
+  /* ── verdicts (words, never scores) ─────────────────────────────────────── */
+  --ok:     #3E8655;  --ok-deep:     #386F4A;  --ok-bright:   #A8C9B3;
+  --warn:   #B0791A;  --warn-deep:   #9A7420;  --warn-bright: #F3D595;
+  --danger: #A93226;  --danger-deep: #8C2318;  --danger-tint: #F6E3DF;
+
+  /* ── the sun-logo spectrum (signature only — never a background wash) ──── */
+  --c-red: #BF4131; --c-orange: #E07D38; --c-yellow: #E9B23E; --c-green: #6B9A40;
+  --c-blue: #346FA6; --c-indigo: #2C5C8A; --c-violet: #7B4F9E;
+
+  /* ── type ───────────────────────────────────────────────────────────────── */
+  --display: 'Cormorant Garamond', 'Noto Serif Devanagari', Georgia, serif;
+  --body:    'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --geo:     'Jost', 'Century Gothic', Futura, system-ui, sans-serif;   /* labels, eyebrows */
+  --hand:    'Kalam', cursive;                                           /* warmth only, never data */
+  --deva:    'Noto Serif Devanagari', var(--display);
+  --mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace;        /* hashes only */
+
+  /* ── spacing & shape ────────────────────────────────────────────────────── */
+  --hair: 4px;  --pad-chip: 8px;  --gap-grid: 12px;  --pad-card: 20px;  --rhythm: 44px;
+  --radius: 8px;  --radius-frame: 10px;  --pill: 999px;
+  --touch: 44px;  /* min touch target */
+}
+
+/* ── base ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--desk); color: var(--ink);
+  font-family: var(--body); font-size: 15px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 400; color: var(--ink); line-height: 1.1; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(32px, 5vw, 46px); }
+h2 { font-size: 28px; }
+h3 { font-size: 22px; }
+p  { text-wrap: pretty; }
+a  { color: var(--link); text-decoration-color: var(--line); text-underline-offset: 2px; }
+a:hover { color: var(--link-hover); }
+::selection { background: color-mix(in srgb, var(--skill) 22%, transparent); }
+:focus-visible { outline: 2.5px solid var(--head); outline-offset: 2px; border-radius: 4px; }
+code, .lofl-mono { font-family: var(--mono); font-size: .88em; }
+[hidden] { display: none !important; }   /* component display rules must never beat the hidden attribute */
+[lang|="hi"], [lang|="mr"], [lang|="sa"], .lofl-deva { font-family: var(--deva); }
+
+/* ── the paper column ────────────────────────────────────────────────────── */
+.lofl-page {
+  max-width: 1080px; margin: 0 auto; min-height: 100vh;
+  background: var(--bg); padding: 40px clamp(16px, 4vw, 48px) 64px;
+  border-inline: 1px solid var(--line);
+}
+.lofl-frame  { border: 1.5px solid var(--line2); border-radius: var(--radius-frame); background: var(--surface); padding: 22px 26px; }
+.lofl-panel  { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 16px var(--pad-card); }
+.lofl-divider{ border: 0; border-top: 1px dashed var(--line); margin: 14px 0; }
+.lofl-grid   { display: grid; gap: var(--gap-grid); grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.lofl-section{ margin-top: var(--rhythm); }
+
+/* section head: indigo number chip + display heading + one-line frame */
+.lofl-section-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+.lofl-num { background: var(--head); color: var(--chip-ink); font-family: var(--display); font-size: 15px; padding: 3px 12px; border-radius: 4px; }
+.lofl-frame-line { font-size: 13px; color: var(--muted); }
+
+/* small caps label above a panel */
+.lofl-kicker { font-family: var(--body); font-size: 14px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.lofl-eyebrow{ font-family: var(--geo); font-size: 12.5px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.lofl-note-small { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
+.lofl-hand { font-family: var(--hand); color: var(--primary); }
+
+/* ── chips ───────────────────────────────────────────────────────────────── */
+.lofl-chip {
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  border: 1px solid var(--line2); background: var(--surface); color: var(--soft);
+  border-radius: var(--pill); padding: 4px 12px; font-size: 13px; font-weight: 600; line-height: 1.3;
+}
+.lofl-chip .lofl-dot, .lofl-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+.lofl-chip--ok     { border-color: var(--ok);     color: var(--ok-deep);     background: var(--green-tint); }
+.lofl-chip--ok .lofl-dot { background: var(--ok); }
+.lofl-chip--warn   { border-color: var(--warn);   color: var(--warn-deep);   background: var(--culture-tint); }
+.lofl-chip--warn .lofl-dot { background: var(--warn); }
+.lofl-chip--danger { border-color: var(--danger); color: var(--danger-deep); background: var(--danger-tint); }
+.lofl-chip--danger .lofl-dot { background: var(--danger); }
+.lofl-chip--press  { border: 1.5px solid var(--primary); color: var(--primary); background: var(--surface); border-radius: 6px; font-weight: 700; }   /* ⚑ M to press */
+.lofl-chip--parked { border: 1.5px dashed var(--line2); color: var(--muted); background: transparent; font-weight: 400; }  /* never gains a fill */
+.lofl-chip--meta   { border-radius: 5px; padding: 2px 9px; font-size: 11.5px; font-weight: 500; background: var(--bg); color: var(--muted); }
+.lofl-chip--hash   { border-radius: 5px; padding: 2px 9px; font-size: 11.5px; font-weight: 500; background: var(--bg); color: var(--muted); font-family: var(--mono); }
+.lofl-chip--proposal { border: 1.5px dashed var(--primary); color: var(--primary); background: var(--surface); font-weight: 500; } /* machine-researched, unconfirmed */
+
+/* suit chips (fill = the suit, ink chosen for contrast) */
+.lofl-chip--learning { background: var(--learning); border-color: var(--learning); color: var(--learning-ink); }
+.lofl-chip--skill    { background: var(--skill);    border-color: var(--skill);    color: var(--skill-ink); }
+.lofl-chip--culture  { background: var(--culture);  border-color: var(--culture);  color: var(--culture-ink); }
+.lofl-chip--green    { background: var(--green);    border-color: var(--green);    color: var(--green-ink); }
+
+/* ── ladders (stages, assurance L0–L3) — filled = passed · outlined = current · dashed = ahead ── */
+.lofl-ladder { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
+.lofl-ladder > li + li::before { content: "→"; color: var(--line2); margin-right: 6px; }
+.lofl-step { display: inline-block; border: 1.5px solid var(--head); border-radius: var(--pill); padding: 3px 14px; font-size: 13px; font-weight: 600; }
+.lofl-step--done    { background: var(--head); color: var(--chip-ink); }
+.lofl-step--current { background: var(--surface); color: var(--head); }
+.lofl-step--ahead   { border-style: dashed; border-color: var(--line2); color: var(--muted); font-weight: 400; }
+.lofl-ladder--verify .lofl-step { border-color: var(--green); }
+.lofl-ladder--verify .lofl-step--done { background: var(--green); color: var(--green-ink); }
+.lofl-ladder--verify .lofl-step--current { color: var(--green-deep); }
+
+/* ── banners & notes ─────────────────────────────────────────────────────── */
+.lofl-banner--blocked {           /* blocked is a banner, never a footnote */
+  display: flex; align-items: center; gap: 14px;
+  border: 2px solid var(--danger); border-radius: var(--radius-frame);
+  background: var(--danger-tint); color: var(--danger-deep);
+  padding: 14px 20px; font-size: 14px;
+}
+.lofl-banner--blocked::before { content: "⛔"; font-family: var(--display); font-size: 20px; color: var(--danger); }
+.lofl-note { border: 1.5px solid var(--line2); border-left-width: 6px; border-radius: var(--radius); padding: 12px 16px; font-size: 13.5px; color: var(--ink); background: var(--surface); }
+.lofl-note--dissent  { border-color: var(--learning); background: var(--learning-tint); }  /* dissent kept, never averaged */
+.lofl-note--dissent  > strong:first-child { color: var(--learning-deep); }
+.lofl-note--decision { border-color: var(--primary); background: var(--bg); }              /* a human press, dated + named */
+.lofl-note--decision > strong:first-child { color: var(--primary); }
+.lofl-note--partial  { border-color: var(--warn); background: var(--culture-tint); }        /* honest partial */
+
+/* empty by design — render proudly, never hide */
+.lofl-empty { border: 1.5px dashed var(--line); border-radius: var(--radius); padding: 10px 14px; text-align: center; font-size: 13px; color: var(--muted); }
+
+/* ── provenance footer — hash · license · hand-written origin ────────────── */
+.lofl-provenance { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 12px; margin-top: var(--rhythm); }
+
+/* ── forms & buttons ─────────────────────────────────────────────────────── */
+.lofl-field, .lofl-page input[type="text"], .lofl-page input[type="date"], .lofl-page textarea, .lofl-page select {
+  font: inherit; color: var(--ink); background: var(--surface);
+  border: 1.5px solid var(--line2); border-radius: var(--radius); padding: 9px 12px; min-height: var(--touch); width: 100%;
+}
+.lofl-page textarea { min-height: 88px; resize: vertical; }
+.lofl-label { display: block; font-size: 13px; font-weight: 600; color: var(--soft); margin: 0 0 6px; }
+.lofl-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--touch);
+  font: 600 14px/1 var(--body); color: var(--primary); background: var(--surface);
+  border: 1.5px solid var(--primary); border-radius: 6px; padding: 0 16px; cursor: pointer;
+}
+.lofl-btn:hover { background: color-mix(in srgb, var(--primary) 8%, var(--surface)); }
+.lofl-btn--solid { background: var(--primary); color: var(--primary-ink); }
+.lofl-btn--solid:hover { background: color-mix(in oklab, var(--primary) 85%, black); }
+.lofl-btn--quiet { border-color: var(--line2); color: var(--soft); }
+.lofl-press { accent-color: var(--primary); width: 22px; height: 22px; }    /* the human presses the mark */
+
+/* ── register table (desk view) ──────────────────────────────────────────── */
+.lofl-table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: var(--surface); border: 1.5px solid var(--line2); border-radius: var(--radius); overflow: hidden; }
+.lofl-table th { background: var(--surface2); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 8px 12px; border-bottom: 1.5px solid var(--line2); }
+.lofl-table td { padding: 9px 12px; border-bottom: 1px dashed var(--line); vertical-align: top; }
+.lofl-table tr.is-hard td { background: var(--danger-tint); }
+.lofl-table tr.is-pressed td { text-decoration: line-through; color: var(--muted); }   /* struck, never deleted */
+.lofl-table-wrap { overflow-x: auto; }
+
+/* ── nav tabs (no pill backgrounds — the desk stays flat) ────────────────── */
+.lofl-tabs { display: flex; gap: 22px; border-bottom: 1.5px solid var(--line2); margin-bottom: 18px; flex-wrap: wrap; }
+.lofl-tab { font-family: var(--display); font-size: 18px; color: var(--muted); background: none; border: 0; padding: 6px 0; margin-bottom: -1.5px; border-bottom: 2.5px solid transparent; cursor: pointer; }
+.lofl-tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--primary); }
+
+/* ── the mark: sun-on-light by default; dark refractions swap to the cream sun ── */
+.lofl-mark--on-dark { display: none; }
+html[data-mode="dark"] .lofl-mark--on-light { display: none; }
+html[data-mode="dark"] .lofl-mark--on-dark { display: inline-block; }
+
+/* ── the signature ───────────────────────────────────────────────────────── */
+.lofl-spectrum-rule { height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--c-red), var(--c-orange), var(--c-yellow), var(--c-green), var(--c-blue), var(--c-violet)); }
+
+/* ── theme switcher (mounted by lofl-theme.js into [data-lofl-theme-switch]) ─ */
+.lofl-theme-switch { font: 12.5px var(--body); background: var(--surface); color: var(--ink); border: 1px solid var(--line2); border-radius: 6px; padding: 5px 9px; cursor: pointer; }
+
+/* ── accessibility & print ───────────────────────────────────────────────── */
+.lofl-sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+@page { size: A4 portrait; margin: 14mm; }
+@media print {
+  body, .lofl-page { background: #FFFFFF; border: 0; padding: 0; }
+  [data-noprint] { display: none !important; }
+  [data-printbreak] { break-before: page; }
+  .lofl-panel, .lofl-frame, .lofl-note, .lofl-table tr { break-inside: avoid; }
+}

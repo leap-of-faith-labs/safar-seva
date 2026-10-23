@@ -1,0 +1,48 @@
+[build]
+  command = "npm run build:netlify"
+  publish = "dist/netlify"
+  functions = "netlify/functions"
+[build.environment]
+  NODE_VERSION = "22"
+[functions]
+  node_bundler = "esbuild"
+[[redirects]]
+  from = "/"
+  to = "/safar/index.html"
+  status = 302
+[[redirects]]
+  from = "/safar"
+  to = "/safar/index.html"
+  status = 302
+[[redirects]]
+  from = "/safar/"
+  to = "/safar/index.html"
+  status = 302
+[[redirects]]
+  from = "/admin"
+  to = "/safar/admin.html"
+  status = 302
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+[[headers]]
+  for = "/safar/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+[[headers]]
+  for = "/safar/assets.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
+[[headers]]
+  for = "/safar/admin*"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Robots-Tag = "noindex, nofollow"

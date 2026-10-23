@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Reviewer desk · Safar Seva</title>
+    <link rel="icon" href="./design/logo/favicon.svg" />
+    <link rel="stylesheet" href="./design/css/lofl-tool.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./ux.css" />
+    <link rel="stylesheet" href="./experience.css" />
+    <link rel="stylesheet" href="./admin.css" />
+    <script type="module" src="./admin.mjs"></script>
+  </head>
+  <body>
+    <div class="lofl-page safar-page">
+      <div class="lofl-spectrum-rule" aria-hidden="true"></div>
+      <header class="site-header shell lofl-frame">
+        <a class="brand" href="./index.html"
+          ><img
+            class="brand-mark"
+            src="./design/logo/lofl-logo.svg"
+            alt="LOFL"
+            width="52"
+            height="52"
+          /><span><strong>कथा संपादन</strong><small>SAFAR SEVA / REVIEWER DESK</small></span></a
+        ><a href="./stories.html" class="text-button">Public stories ↗</a>
+      </header>
+      <main class="admin-main">
+        <p class="eyebrow">REVIEW WHAT TRAVELLERS HAVE SHARED</p>
+        <h1>एक गोष्ट. पुढचा टप्पा.</h1>
+        <p class="review-intro">
+          Images, story ideas and wording contributions arrive here after they are sent. Rider
+          notebooks and private station notes stay on their devices.
+        </p>
+        <p id="admin-error" class="warning" role="alert" hidden></p>
+        <section id="admin-login">
+          <form id="login-form" class="admin-login-form">
+            <h2>Reviewer sign in</h2>
+            <label for="admin-password">Reviewer password</label
+            ><input
+              id="admin-password"
+              type="password"
+              required
+              autocomplete="current-password"
+              maxlength="256"
+            /><button class="primary-button" type="submit">Open reviewer inbox →</button>
+            <p class="task-hint">
+              Use the reviewer password configured on the server. If this embedded browser blocks
+              sign-in cookies, open the site directly in your browser.
+            </p>
+          </form>
+        </section>
+        <section id="admin-desk" hidden>
+          <div class="admin-toolbar">
+            <p id="admin-session" class="task-hint"></p>
+            <button id="admin-logout" class="text-button" type="button">Sign out</button>
+          </div>
+          <div id="admin-counter" class="ledger-stats"></div>
+          <p class="task-hint">
+            These are reported participation events, not unique people. Counter resets use a new
+            launch epoch; submitted work is retained.
+          </p>
+          <form id="admin-filters" class="admin-filters">
+            <label
+              >Status<select id="filter-status">
+                <option value="pending">Pending</option>
+                <option value="approved">Approved / accepted</option>
+                <option value="declined">Declined</option>
+                <option value="">All</option>
+              </select></label
+            ><label
+              >Contribution<select id="filter-kind">
+                <option value="">All types</option>
+                <option value="image">Web image</option>
+                <option value="story">Story idea</option>
+                <option value="wording">Wording</option>
+              </select></label
+            ><button class="secondary-button" type="submit">Refresh inbox</button
+            ><button id="admin-download" class="text-button" type="button">
+              Download this page ↓
+            </button>
+          </form>
+          <p id="admin-status" role="status"></p>
+          <div id="admin-items"></div>
+          <div class="admin-pagination">
+            <button id="admin-prev" class="secondary-button" type="button">← Previous</button
+            ><span id="admin-page"></span
+            ><button id="admin-next" class="secondary-button" type="button">Next →</button>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <span>Safar Seva / LOFL reviewer desk</span
+        ><img
+          class="footer-logo"
+          src="./design/logo/lofl-logo.svg"
+          alt="LOFL"
+          width="64"
+          height="64"
+        />
+      </footer>
+    </div>
+  </body>
+</html>

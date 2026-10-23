@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="mr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#F1E8D7" />
+    <meta
+      name="description"
+      content="Stories along the Pune Metro line. Read, contribute a web image, or suggest a story for Safar Seva."
+    />
+    <title>पुण्याच्या गोष्टी · Stories · Safar Seva</title>
+    <link rel="icon" href="./design/logo/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./design/css/lofl-tool.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./ux.css" />
+    <link rel="stylesheet" href="./experience.css" />
+    <script type="module" src="./stories-page.mjs"></script>
+  </head>
+  <body>
+    <div class="lofl-page safar-page stories-page">
+      <a class="skip-link" href="#main">मुख्य भागाकडे जा · Skip to content</a>
+      <div class="lofl-spectrum-rule" aria-hidden="true"></div>
+      <header class="site-header shell lofl-frame">
+        <a class="brand" id="stories-home" href="./index.html" aria-label="Safar Seva home"
+          ><img
+            class="brand-mark"
+            src="./design/logo/lofl-logo.svg"
+            alt="LOFL"
+            width="60"
+            height="60"
+          /><span
+            ><strong lang="mr">सफर सेवा</strong
+            ><small lang="en"
+              >SAFAR SEVA <span class="brand-divider">/</span> LEAP OF FAITH LABS</small
+            ></span
+          ></a
+        >
+        <nav aria-label="Main navigation">
+          <a id="stories-ride" href="./index.html" lang="en">Ride</a
+          ><a href="./stories.html" aria-current="page" lang="en">Stories</a
+          ><a id="stories-notebook" href="./index.html#ledger" lang="en">Notebook</a>
+        </nav>
+        <span class="connection" id="stories-connection" role="status" lang="en"
+          ><i></i>Stories along the line</span
+        >
+      </header>
+      <main id="main" tabindex="-1">
+        <p id="stories-warning" class="warning" role="alert" hidden></p>
+        <section class="stories-intro" aria-labelledby="stories-title">
+          <div>
+            <p class="eyebrow" lang="en">PUNE / A CITY FULL OF STORIES</p>
+            <h1 id="stories-title">
+              पुण्याच्या गोष्टी.<span lang="en">A little closer to the city.</span>
+            </h1>
+            <p>
+              नावामागची गोष्ट. वाटेतली आठवण. तुमच्या नजरेतून पुणे.<span lang="en"
+                >Eight small stories along the line. Read one, find an image, or tell us what we
+                should explore next.</span
+              >
+            </p>
+          </div>
+          <button id="suggest-story" class="primary-button" type="button">
+            ＋ नवी गोष्ट सुचवा <small lang="en">Suggest a story</small>
+          </button>
+        </section>
+        <div class="story-experiment-note">
+          <span class="experiment-mark" aria-hidden="true">↗</span>
+          <p>
+            <strong>चित्रातून एक नवा प्रयोग <span lang="en">/ An image experiment</span></strong
+            ><span lang="en"
+              >Found an image that brings a story to life? Add its web link, source and credit. Your
+              images and story ideas can be sent to our reviewer. Keep a downloadable copy of your
+              drafts.</span
+            >
+          </p>
+          <button id="download-experiments" class="text-button" type="button" lang="en">
+            Download contributions ↓
+          </button>
+        </div>
+        <p class="stories-reading-note" lang="en">
+          An explicit “I’ve read this” counts towards your Yatra just like a ride story. Web images
+          need a connection.
+        </p>
+        <section id="story-library" class="story-gallery" aria-label="Stories along the line">
+          <p role="status" lang="en">Opening the story shelf…</p>
+        </section>
+        <section class="suggestion-shelf" aria-labelledby="suggestions-title">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow" lang="en">ROOM FOR ANOTHER STORY</p>
+              <h2 id="suggestions-title">
+                तुमच्या गोष्टी <span lang="en">Ideas from your notebook</span>
+              </h2>
+            </div>
+            <button id="suggest-another" class="secondary-button" type="button">
+              ＋ Suggest a story
+            </button>
+          </div>
+          <div id="saved-suggestions"></div>
+        </section>
+        <section class="about-section">
+          <span class="about-symbol" aria-hidden="true">↗</span>
+          <div>
+            <p class="eyebrow" lang="en">A SMALL PUBLIC-GOOD EXPERIMENT</p>
+            <h2>एक प्रवास. थोडं चांगलं.</h2>
+            <p lang="en">
+              A little good, along the way. Stories of Pune, small choices, and moments shared with
+              willing fellow travellers.
+            </p>
+          </div>
+          <img
+            class="footer-logo"
+            src="./design/logo/lofl-logo.svg"
+            alt="LOFL · Leap of Faith Labs"
+            width="80"
+            height="80"
+          />
+        </section>
+      </main>
+      <footer class="site-footer shell">
+        <span lang="en"
+          >Made for the journey, by LOFL.
+          <span class="version">Local pilot · Stories experiment</span></span
+        ><a
+          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+          lang="en"
+          >Original story text · CC BY-SA 4.0 ↗</a
+        >
+        <a href="./admin.html">Reviewer desk</a>
+      </footer>
+    </div>
+    <dialog id="image-dialog" class="contribution-dialog" aria-labelledby="image-dialog-title">
+      <div class="dialog-top">
+        <div>
+          <p class="eyebrow" lang="en">THE IMAGE EXPERIMENT</p>
+          <h2 id="image-dialog-title">
+            गोष्ट चित्रात <small lang="en">An image for this story</small>
+          </h2>
+        </div>
+        <button
+          class="secondary-button icon-button"
+          type="button"
+          data-close-dialog
+          aria-label="Close image contribution"
+        >
+          ×
+        </button>
+      </div>
+      <p id="image-story-title" class="dialog-story-title" lang="en"></p>
+      <form id="image-form">
+        <input name="storyId" type="hidden" /><label for="image-url"
+          >चित्राची लिंक <small lang="en">Direct image URL · HTTPS</small></label
+        ><input
+          id="image-url"
+          name="imageURL"
+          type="url"
+          required
+          maxlength="2048"
+          placeholder="https://…/photo.jpg"
+        /><label for="image-source">मूळ पान <small lang="en">Source page URL</small></label
+        ><input
+          id="image-source"
+          name="sourceURL"
+          type="url"
+          required
+          maxlength="2048"
+          placeholder="https://…"
+        /><label for="image-credit"
+          >श्रेय <small lang="en">Photographer / image credit</small></label
+        ><input
+          id="image-credit"
+          name="credit"
+          required
+          maxlength="160"
+          placeholder="Who made or shared this image?"
+        /><label for="image-caption"
+          >चित्राचं वर्णन <small lang="en">What does the image show?</small></label
+        ><textarea id="image-caption" name="caption" required maxlength="240" rows="3"></textarea>
+        <p class="task-hint" lang="en">
+          Use an image you can share, and keep its credit. This sends the image link and credit to a
+          reviewer. The image is published only after approval.
+        </p>
+        <p class="field-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button class="secondary-button" data-close-dialog type="button">Cancel</button
+          ><button class="primary-button" type="submit">चित्र पाठवा · Send image</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog
+      id="suggestion-dialog"
+      class="contribution-dialog"
+      aria-labelledby="suggestion-dialog-title"
+    >
+      <div class="dialog-top">
+        <div>
+          <p class="eyebrow" lang="en">WHAT SHOULD WE EXPLORE NEXT?</p>
+          <h2 id="suggestion-dialog-title">
+            नवी गोष्ट सुचवा <small lang="en">Every stop has a story.</small>
+          </h2>
+        </div>
+        <button
+          class="secondary-button icon-button"
+          type="button"
+          data-close-dialog
+          aria-label="Close story suggestion"
+        >
+          ×
+        </button>
+      </div>
+      <form id="suggestion-form">
+        <label for="suggestion-title"
+          >गोष्टीचं नाव <small lang="en">Your story title · Marathi or English</small></label
+        ><input
+          id="suggestion-title"
+          name="title"
+          required
+          maxlength="160"
+          placeholder="A place, a person, a small piece of Pune…"
+        /><label for="suggestion-station"
+          >जवळचं स्थानक <small lang="en">Nearest Metro station</small></label
+        ><select id="suggestion-station" name="stationId" required>
+          <option value="">Choose a station</option></select
+        ><label for="suggestion-summary"
+          >गोष्ट काय आहे? <small lang="en">What makes it worth telling?</small></label
+        ><textarea
+          id="suggestion-summary"
+          name="summary"
+          required
+          maxlength="2000"
+          rows="5"
+          placeholder="Tell us the idea, and what we could learn from it."
+        ></textarea
+        ><label for="suggestion-source"
+          >अधिक माहिती <small lang="en">Source link · optional</small></label
+        ><input
+          id="suggestion-source"
+          name="sourceURL"
+          type="url"
+          maxlength="2048"
+          placeholder="https://…"
+        />
+        <p class="task-hint" lang="en">
+          Send this idea to the reviewer inbox. It is a proposal; accepting an idea does not publish
+          a new story.
+        </p>
+        <p class="field-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button class="secondary-button" data-close-dialog type="button">Cancel</button
+          ><button class="primary-button" type="submit">गोष्ट पाठवा · Send idea</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+    <noscript
+      ><p class="warning">
+        Please enable JavaScript to open stories and save your contributions.
+      </p></noscript
+    >
+  </body>
+</html>

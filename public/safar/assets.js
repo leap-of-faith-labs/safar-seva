@@ -1,8 +1,16 @@
 // Shared release and offline asset list: rider app and service worker.
-globalThis.SAFAR_RELEASE = 'safar-seva-v0.6.1-r2';
+globalThis.SAFAR_RELEASE = 'safar-seva-v0.8.0-r2';
 globalThis.SAFAR_OFFLINE_ASSETS = Object.freeze([
-  "./",
   "./index.html",
+  "./stories.html",
+  "./stories-page.mjs",
+  "./safe-storage.mjs",
+  "./submission-client.mjs",
+  "./pulse-client.mjs",
+  "./story-experiments.mjs",
+  "./floating-stamp.mjs",
+  "./route-sidecar.mjs",
+  "./experience.css",
   "./styles.css",
   "./ux.css",
   "./app.js",

@@ -11,7 +11,7 @@ self.addEventListener('activate', event => {
 });
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
-  if (event.request.method !== 'GET' || url.origin !== self.location.origin || url.pathname.startsWith('/__editor/')) return;
+  if (event.request.method !== 'GET' || url.origin !== self.location.origin || url.pathname.startsWith('/__editor/') || url.pathname.startsWith('/api/') || url.pathname.endsWith('/admin.html')) return;
   url.search = '';
   const known = ASSETS.map(asset => new URL(asset, self.registration.scope).href);
   if (!known.includes(url.href) && event.request.mode !== 'navigate') return;
@@ -23,7 +23,7 @@ self.addEventListener('fetch', event => {
       const cache = await caches.open(CACHE); await cache.put(url.href, response.clone()); return response;
     }).catch(() => caches.match(url.href)));
   } else if (event.request.mode === 'navigate') {
-    const page = url.pathname.endsWith('/review.html') ? './review.html' : './index.html';
+    const page = url.pathname.endsWith('/review.html') ? './review.html' : url.pathname.endsWith('/stories.html') ? './stories.html' : './index.html';
     event.respondWith(fetch(event.request).catch(() => caches.match(new URL(page, self.registration.scope).href)));
   } else {
     event.respondWith(caches.match(url.href).then(cached => cached || fetch(event.request)));

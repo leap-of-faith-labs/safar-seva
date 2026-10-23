@@ -1,0 +1,137 @@
+.admin-main {
+  padding: 40px 0;
+}
+.admin-main h1 {
+  margin-bottom: 16px;
+}
+.admin-login-form {
+  max-width: 480px;
+  padding: 24px;
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.admin-login-form label,
+.admin-item > label {
+  display: block;
+  margin: 20px 0 8px;
+}
+.admin-login-form input,
+.admin-item textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line2);
+  border-radius: 6px;
+  font: inherit;
+}
+.admin-login-form button {
+  margin-top: 20px;
+  width: 100%;
+}
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.admin-filters {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 32px 0 16px;
+}
+.admin-filters label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+.admin-filters select {
+  min-height: 48px;
+  min-width: 160px;
+  padding: 10px;
+  border: 1px solid var(--line2);
+  border-radius: 6px;
+  background: var(--surface);
+}
+.admin-item {
+  padding: 24px;
+  margin: 24px 0;
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.admin-item-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+.admin-item h3 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.admin-submitted-text {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.admin-review-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.admin-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0;
+}
+.admin-image-preview img {
+  display: block;
+  max-width: 100%;
+  max-height: 320px;
+  margin-block: 16px;
+}
+.admin-main .ledger-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.admin-main .stat {
+  padding: 16px;
+  flex-wrap: wrap;
+}
+.admin-main .stat-description {
+  font-size: 12px;
+}
+.submission-status {
+  font: 12px/1.8 var(--body);
+  color: var(--ok-deep);
+}
+@media (max-width: 760px) {
+  .admin-main .ledger-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .admin-item {
+    padding: 16px;
+  }
+  .admin-item-meta {
+    flex-wrap: wrap;
+  }
+  .admin-review-actions > * {
+    width: 100%;
+  }
+  .admin-filters label {
+    flex: 1;
+  }
+  .admin-filters select {
+    min-width: 0;
+  }
+  .admin-main {
+    padding: 24px 0;
+  }
+}

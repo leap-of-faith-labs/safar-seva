@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="./design/css/lofl-tool.css">
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./ux.css">
+  <link rel="stylesheet" href="./experience.css">
   <script type="module" src="./app.js"></script>
 </head>
 <body>
@@ -26,7 +27,7 @@
       <img class="brand-mark" src="./design/logo/lofl-logo.svg" alt="LOFL" width="60" height="60">
       <span><strong lang="mr">सफर सेवा</strong><small lang="en">SAFAR SEVA <span class="brand-divider">/</span> LEAP OF FAITH LABS</small></span>
     </a>
-    <nav aria-label="Main navigation"><a id="nav-ride" href="#journey" lang="en">Ride</a><a href="#more" lang="en">Stories</a><a href="#ledger" lang="en">Notebook <span id="nav-count">0</span></a></nav>
+    <nav aria-label="Main navigation"><a id="nav-ride" href="#journey" lang="en">Ride</a><a href="./stories.html" id="nav-stories" lang="en">Stories</a><a href="#ledger" lang="en">Notebook <span id="nav-count">0</span></a></nav>
     <span class="connection" id="connection" role="status" lang="en"><i></i>Preparing offline…</span>
   </header>
 
@@ -81,24 +82,10 @@
       <section id="share-panel" class="share-panel" hidden aria-labelledby="share-title"></section>
     </section>
 
-    <details id="more" class="more-disclosure"><summary>आणखी · <span lang="en">Stories along the line</span></summary><section id="stories" class="stories-section" aria-labelledby="stories-title"><div class="section-header"><div><p class="eyebrow" lang="en">03 / STORIES ALONG THE LINE</p><h2 id="stories-title" tabindex="-1">पुण्याच्या आठ गोष्टी <span lang="en">Eight stories along the line</span></h2></div><span class="badge" lang="en">Original summaries · sources included</span></div><p class="ledger-context">कथा वाचा आणि “वाचलं” दाबा. यात्रेच्या काळात प्रत्येक गोष्टीची एकदाच नोंद होते.<br><span lang="en">Reading here or on a ride card counts equally. During the season, each story adds one light on this device.</span></p><div id="story-library" class="story-library"></div></section></details>
-
-    <section class="about-section" id="about" aria-labelledby="about-title"><span class="about-symbol" aria-hidden="true">↗</span><div><p class="eyebrow" lang="en">A SMALL PUBLIC-GOOD EXPERIMENT</p><h2 id="about-title">एक प्रवास. थोडं चांगलं.</h2><p lang="en">A little good, along the way. Stories of Pune, small choices, and moments shared with willing fellow travellers.</p><p class="refusals" lang="en">No ads. No GPS. No rankings. No streaks. No photos of people.</p></div><span class="lofl-wordmark" lang="en">LOFL<span>care, in practice.</span></span></section>
+    <section class="about-section" id="about" aria-labelledby="about-title"><span class="about-symbol" aria-hidden="true">↗</span><div><p class="eyebrow" lang="en">A SMALL PUBLIC-GOOD EXPERIMENT</p><h2 id="about-title">एक प्रवास. थोडं चांगलं.</h2><p lang="en">A little good, along the way. Stories of Pune, small choices, and moments shared with willing fellow travellers.</p><p class="refusals" lang="en">No ads. No GPS. No rankings. No streaks. No photos of people.</p></div><img class="footer-logo" src="./design/logo/lofl-logo.svg" alt="LOFL · Leap of Faith Labs" width="80" height="80"></section>
   </main>
-  <footer class="site-footer shell"><span lang="en">Made for the journey, by LOFL. · LOFL Sand design <span class="version">Local pilot · v6.1</span></span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" lang="en">Original learning content · CC BY-SA 4.0 ↗</a><a href="./review.html" class="reviewer-entry" lang="en" hidden>For reviewers</a></footer>
+  <footer class="site-footer shell"><span lang="en">Made for the journey, by LOFL. · LOFL Sand design <span class="version">Local pilot · v8.0</span></span><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" lang="en">Original learning content · CC BY-SA 4.0 ↗</a><a href="./admin.html" lang="en">Reviewer desk</a></footer>
 </div>
-  <dialog id="stamp-dialog" class="stamp-dialog" aria-labelledby="stamp-title">
-    <div class="dialog-top"><h2 id="stamp-title">सफरेचा शिक्का <small lang="en">Seal your ride</small></h2><button id="close-stamp" class="secondary-button icon-button" aria-label="Close stamping" type="button">×</button></div>
-    <p id="stamp-route" class="stamp-route" lang="en"></p>
-    <div class="stamp-counter"><span>शिक्क्याच्या छाप <small lang="en">Ink impressions</small></span><output id="stamp-count">0</output></div>
-    <div id="stamp-paper" class="stamp-paper" aria-label="Your stamp impressions"></div>
-    <button id="press-stamp" class="primary-button stamp-press" type="button"><span class="stamp-tool" aria-hidden="true"><i></i><b></b></span><span id="stamp-action-label">शिक्का मारा · Stamp my ride</span></button>
-    <p id="stamp-status" class="stamp-status" role="status" lang="en"></p>
-    <p id="stamp-earn" class="stamp-earn"></p>
-    <div id="stamp-ai"></div>
-    <p id="stamp-cycle" class="stamp-earn" hidden>पूर्ण फेरी! End to end on one line. Your ride and notebook are saved on this device. <button id="cycle-download" class="text-button" type="button">Download notebook first ↓</button></p>
-    <button id="stamp-done" class="text-button" type="button">झालं · Done →</button>
-  </dialog>
   <dialog id="together-dialog" class="together-dialog" aria-labelledby="together-title">
     <div class="dialog-top"><h2 id="together-title">सोबत सफर <small lang="en">Ride together</small></h2><button id="close-together" class="secondary-button icon-button" aria-label="Close invitation" type="button">×</button></div>
     <p id="together-route" lang="en"></p>

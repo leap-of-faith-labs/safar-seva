@@ -1,7 +1,12 @@
 import './assets.js';
+import { createSafeStorage } from './safe-storage.mjs';
+import { createPulseReporter } from './pulse-client.mjs';
+import { sendSubmission } from './submission-client.mjs';
+import { mountFloatingStamp } from './floating-stamp.mjs';
+import { mountRouteSidecar } from './route-sidecar.mjs';
 import { routeContext, seasonDates, runFormAction } from './ux.mjs';
 import qrcode from './vendor/qrcode.mjs';
-import { impressionCount, addImpression, sealMarkup, earnedImpressions, canStamp, markInvited, aiSessionUnlocked, AI_SESSION_URL, AI_SESSION_THRESHOLD, yatraBadges } from './stamps.mjs';
+import { impressionCount, sealMarkup, markInvited, aiSessionUnlocked, AI_SESSION_URL, yatraBadges } from './stamps.mjs';
 import { createLightRide, choiceTask, invitationURL, readInvitation } from './lightweight.mjs';
 import { linkStations, getStopCount, getRouteStationIds, getCardTier, createRide, completeTask, addOptionalTask, swapTask, undoTask, makeExport, getLedgerStats } from './core.mjs';
 import { parseStoredState } from './storage.mjs';
@@ -10,9 +15,10 @@ import { createContribution, validateCatalog, validatePacket } from './contribut
 import { addShortTripStory, swapCoherently, assembleSuggestion, suggestionInput, matchingPacket, contributionState, startRevision, firstSentence, matchGivingPreservingDraft } from './experience.mjs';
 import { $, escapeHTML as e, localTime, istInput, sourceLinks, downloadJSON } from './ui.mjs';
 import { renderWayfinding } from './wayfinding-view.mjs';
-import { settingLabels, storySetting, stationStories } from './wayfinding.mjs';
+import { stationStories } from './wayfinding.mjs';
 
 const ASSETS = globalThis.SAFAR_OFFLINE_ASSETS;
+const localStore = createSafeStorage(() => window.localStorage, () => warning('Browser storage is unavailable. Work stays in this tab; download your notebook before closing.'));
 const slug = new URLSearchParams(location.search).get('test');
 const TEST_SESSION = /^[a-z0-9_-]{1,40}$/i.test(slug || '') ? slug : null;
 const TEST_MODE = Boolean(TEST_SESSION);
@@ -29,6 +35,9 @@ let stations = [], tasks = [], legacyTasks = [], taskData, catalog, season;
 let state = { schemaVersion:1, rides:[], currentRideId:null, currentTaskId:null, forms:{}, outbox:[], storyReads:[], handoffs:[] };
 let storageAvailable = true, unreadableSave = null, showBuilder = true, offlineReady = false, offlineFailed = false, toastTimer;
 let yatraOpen = false, shareHash = null, invitation = null;
+let floatingStamp;
+const routeSidecar = mountRouteSidecar();
+const storyURL = id => `./stories.html${location.search}${id ? `#${encodeURIComponent(id)}` : ''}`;
 const editing = new Set(), swapping = new Set(), selectedTasks = new Map();
 const atlasStations = new Map(), atlasViews = new Map(), atlasOpen = new Map();
 const rideNow = () => state.rides.find(ride => ride.id === state.currentRideId);
@@ -44,7 +53,7 @@ const statusOf = packet => contributionState(packet,catalog,state.handoffs);
 function warning(message) { $('#storage-warning').hidden = false; $('#storage-warning').textContent = message; }
 function loadState() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_KEY);
+    const raw = localStore.getItem(STORAGE_KEY) ?? localStore.getItem(LEGACY_KEY);
     if (!raw) return;
     unreadableSave = raw;
     const restored = parseStoredState(raw);
@@ -58,7 +67,7 @@ function loadState() {
 }
 function persist() {
   if (!storageAvailable) return false;
-  try { localStorage.setItem(STORAGE_KEY,JSON.stringify(state)); return true; }
+  try { return localStore.setItem(STORAGE_KEY,JSON.stringify(state)); }
   catch { storageAvailable = false; warning('या सत्रातलं काम डाउनलोड करा. Device storage is unavailable; download your work before closing.'); return false; }
 }
 function toast(message) {
@@ -104,13 +113,7 @@ function renderYatra() {
   const dates = seasonDates(season);
   const phase = progress.state === 'upcoming' ? `Starts ${dates.start}` : progress.state === 'ended' ? 'Season ended' : `Till ${dates.end}`;
   const badges = yatraBadges(progress.count).map(b => `<li class="yatra-badge" data-earned="${b.earned}"><span aria-hidden="true">${b.earned ? '🪔' : '◌'}</span><strong>${b.mr}<small lang="en">${b.en} · ${b.at} ${b.at === 1 ? 'story' : 'stories'}</small></strong></li>`).join('');
-  $('#yatra').innerHTML = `<details class="yatra-disclosure" ${open ? 'open' : ''}><summary><h2 id="yatra-title">${e(season.title_mr)} <small lang="en">Diwali Yatra</small></h2><span>${progress.count} / ${progress.target} <small lang="en">on this device · ${phase}</small></span></summary><div class="yatra-full"><div class="yatra-copy"><p class="eyebrow" lang="en">${progress.state === 'upcoming' ? 'STARTS ' + e(dates.start) : progress.state === 'ended' ? 'SEASON ENDED' : e(dates.start) + ' – ' + e(dates.end)} / ${e(season.title_en)}</p><p>${e(season.mission_mr)}</p><p class="yatra-phase" lang="en">${progress.state === 'upcoming' ? `Read now; seasonal counting starts ${dates.start}.` : progress.state === 'ended' ? 'This season has ended. Your stories and badges are kept here; keep reading at your own pace.' : 'Read a story to light a diya. Light 1, 4 and 8 diyas to earn Yatra badges — each story read also earns another stamp on your ride.'}</p></div><div class="yatra-progress"><div class="progress-track" role="progressbar" aria-label="Distinct stories read on this device this season" aria-valuenow="${progress.count}" aria-valuemin="0" aria-valuemax="${progress.target}"><span style="width:${Math.min(100,progress.count/progress.target*100)}%"></span></div><p class="yatra-detail">तुमचे सहभागाचे शिक्के: ${state.rides.filter(ride => ride.stamp).length}<br><span lang="en">${state.rides.filter(ride => ride.stamp).length} participation stamps · kept on this device</span></p><a class="text-button" href="#stories">कथा निवडा · Choose a story →</a></div><ul class="yatra-badges" aria-label="Diwali Yatra badges">${badges}</ul><div class="yatra-lamps">${catalog.stories.map(story => `<a href="#${e(story.id)}" class="yatra-lamp ${progress.discovered.includes(story.id) ? 'lit' : ''}" aria-label="${e(story.title_mr)}${progress.discovered.includes(story.id) ? ' · counted this season' : ''}"><span class="diya" aria-hidden="true"></span><small>${e(station(story.station_ids[0]).name_mr)}</small></a>`).join('')}</div></div></details>`;
-}
-function renderStories() {
-  const opened = new Set([...document.querySelectorAll('.library-story[open]')].map(item => item.id));
-  const counted = progressNow().discovered;
-  const readBefore = new Set([...state.storyReads.map(read => read.storyId), ...state.rides.flatMap(ride => ride.tasks.filter(task => task.kind === 'learn' && task.status === 'completed').map(task => task.storyId))]);
-  $('#story-library').innerHTML = catalog.stories.map(story => `<details class="library-story" id="${e(story.id)}" ${opened.has(story.id) || location.hash === '#'+story.id ? 'open' : ''}><summary><small>${e(station(story.station_ids[0]).name_mr)} · v${story.version} · ${e(settingLabels[storySetting(story)].mr)} / ${e(settingLabels[storySetting(story)].en)}</small><strong>${e(story.title_mr)}</strong><span lang="en">${e(story.title_en)}</span></summary><div class="library-story-body"><p>${e(story.body_mr)}</p><details class="english"><summary lang="en">English</summary><p lang="en">${e(story.body_en)}</p></details>${sourceLinks(story.sources)}<button class="secondary-button" data-read-story="${e(story.id)}">${counted.includes(story.id) ? '✓ यात्रेत नोंद झाली · Read again' : readBefore.has(story.id) ? '✓ वाचल्याची नोंद आहे · Read again' : 'वाचलं · I’ve read this'}</button><p class="task-hint" lang="en">${counted.includes(story.id) ? 'Already counted this season. Reading again adds no extra light.' : readBefore.has(story.id) ? `Reading saved here. Seasonal counting runs ${e(seasonDates(season).start)}–${e(seasonDates(season).end)}; earlier reading is not backdated.` : 'An explicit read here counts just like a ride-card story, during the season.'}</p>${story.appliedContributions.length ? '<p class="badge">वाचकाच्या सूचनेतून सुधारलेली · Includes a published contribution</p>' : ''}</div></details>`).join('');
+  $('#yatra').innerHTML = `<details class="yatra-disclosure" ${open ? 'open' : ''}><summary><h2 id="yatra-title">${e(season.title_mr)} <small lang="en">Diwali Yatra</small></h2><span>${progress.count} / ${progress.target} <small lang="en">on this device · ${phase}</small></span></summary><div class="yatra-full"><div class="yatra-copy"><p class="eyebrow" lang="en">${progress.state === 'upcoming' ? 'STARTS ' + e(dates.start) : progress.state === 'ended' ? 'SEASON ENDED' : e(dates.start) + ' – ' + e(dates.end)} / ${e(season.title_en)}</p><p>${e(season.mission_mr)}</p><p class="yatra-phase" lang="en">${progress.state === 'upcoming' ? `Read now; seasonal counting starts ${dates.start}.` : progress.state === 'ended' ? 'This season has ended. Your stories and badges are kept here; keep reading at your own pace.' : 'Read a story to light a diya. Light 1, 4 and 8 diyas to earn Yatra badges — each story read also earns another stamp on your ride.'}</p></div><div class="yatra-progress"><div class="progress-track" role="progressbar" aria-label="Distinct stories read on this device this season" aria-valuenow="${progress.count}" aria-valuemin="0" aria-valuemax="${progress.target}"><span style="width:${Math.min(100,progress.count/progress.target*100)}%"></span></div><p class="yatra-detail">तुमचे सहभागाचे शिक्के: ${state.rides.filter(ride => ride.stamp).length}<br><span lang="en">${state.rides.filter(ride => ride.stamp).length} participation stamps · kept on this device</span></p><a class="text-button" href="${storyURL()}">कथा निवडा · Choose a story →</a></div><ul class="yatra-badges" aria-label="Diwali Yatra badges">${badges}</ul><div class="yatra-lamps">${catalog.stories.map(story => `<a href="${storyURL(story.id)}" class="yatra-lamp ${progress.discovered.includes(story.id) ? 'lit' : ''}" aria-label="${e(story.title_mr)}${progress.discovered.includes(story.id) ? ' · counted this season' : ''}"><span class="diya" aria-hidden="true"></span><small>${e(station(story.station_ids[0]).name_mr)}</small></a>`).join('')}</div></div></details>`;
 }
 
 function statusMarkup(instance, packet = matchingPacket(instance,state.outbox)) {
@@ -119,7 +122,7 @@ function statusMarkup(instance, packet = matchingPacket(instance,state.outbox)) 
 }
 function packetActions(packet) {
   const {stage} = statusOf(packet);
-  return `<div class="packet-actions"><button class="secondary-button" type="button" data-redownload="${e(packet.hash)}">फाइल पुन्हा डाउनलोड करा · Download again</button>${['ready','handed-over'].includes(stage) ? `<button class="text-button" type="button" data-share-info="${e(packet.hash)}">कुठे द्यायची? · How to hand it over</button>${stage === 'ready' ? `<button class="text-button" type="button" data-handed-over="${e(packet.hash)}">मी फाइल दिली आहे · I’ve handed it over</button>` : '<p class="task-hint" lang="en">Your handoff is recorded on this device. A reviewer’s decision has not arrived in the available publication.</p>'}` : `<a href="#${e(packet.storyId)}" class="text-button">कथा पाहा · Read the story →</a>`}</div>`;
+  return `<div class="packet-actions"><button class="secondary-button" type="button" data-redownload="${e(packet.hash)}">फाइल पुन्हा डाउनलोड करा · Download again</button>${['ready','handed-over'].includes(stage) ? `<button class="text-button" type="button" data-share-info="${e(packet.hash)}">कुठे द्यायची? · How to hand it over</button>${stage === 'ready' ? `<button class="text-button" type="button" data-handed-over="${e(packet.hash)}">मी फाइल दिली आहे · I’ve handed it over</button>` : '<p class="task-hint" lang="en">Your handoff is recorded on this device. A reviewer’s decision has not arrived in the available publication.</p>'}` : `<a href="${storyURL(packet.storyId)}" class="text-button">कथा पाहा · Read the story →</a>`}</div>`;
 }
 function formMarkup(ride,instance,task) {
   const saved = inputOf(instance), id = name => e(`${instance.id}-${name}`);
@@ -172,52 +175,12 @@ function selectStory(id, selected) {
   document.querySelector('[data-story-select]')?.focus({preventScroll:true});
 }
 const playMove = (button, action) => runFormAction(button,action,{reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches});
-let stampingRideId = null, stampingBusy = false;
 const stampDate = ride => new Date(ride.stamp.awardedAt).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'Asia/Kolkata'}).toUpperCase();
 function stampReplicas(ride, prefix, limit = 6) {
   const count = impressionCount(ride);
   return Array.from({length:Math.min(count,limit)},(_,index) => `<span class="stamp-replica">${sealMarkup(`${prefix}-${index}`,stampDate(ride))}</span>`).join('');
 }
-function laterReads(ride) {
-  if(!ride?.stamp) return 0;
-  const after = Date.parse(ride.stamp.awardedAt), next = state.rides.map(item => Date.parse(item.createdAt)).filter(time => time > after).sort((a,b) => a-b)[0] ?? Infinity;
-  return new Set(state.storyReads.filter(read => { const time = Date.parse(read.readAt); return time > after && time < next; }).map(read => read.storyId)).size;
-}
-const earnedFor = ride => earnedImpressions(ride,{laterReads:laterReads(ride)});
-const aiCard = ride => aiSessionUnlocked(ride) ? `<div class="ai-session"><p class="eyebrow" lang="en">SPECIAL MILESTONE</p><strong>विशेष संधी · AI for ALL</strong><p>तुम्ही ${impressionCount(ride)} शिक्के मिळवले! मोफत सत्रात सहभागी व्हा. <span lang="en">You earned ${impressionCount(ride)} stamps on this ride. Join an AI for ALL session.</span></p><a class="primary-button" href="${AI_SESSION_URL}" target="_blank" rel="noopener noreferrer">सत्रात सहभागी व्हा · Join AI for ALL ↗</a></div>` : '';
-function renderStampPaper() {
-  const ride = state.rides.find(item => item.id === stampingRideId); if(!ride?.stamp) return;
-  const count = impressionCount(ride), earned = earnedFor(ride), open = canStamp(ride,earned);
-  $('#press-stamp').disabled = !open;
-  $('#stamp-earn').innerHTML = open ? '' : `<strong>पुढचा शिक्का कमवा · Earn your next stamp</strong><span lang="en">Read another story, invite a co-rider, or finish one more activity. ${Math.max(0,AI_SESSION_THRESHOLD-count) ? `${AI_SESSION_THRESHOLD-count} more to unlock AI for ALL.` : ''}</span>`;
-  $('#stamp-ai').innerHTML = aiCard(ride);
-  $('#stamp-paper').innerHTML = count ? stampReplicas(ride,'popup',6) : '<span class="stamp-empty" aria-hidden="true">＋</span>';
-  $('#stamp-count').textContent = count;
-  $('#stamp-action-label').textContent = count ? 'आणखी एक शिक्का · Stamp again' : 'शिक्का मारा · Stamp my ride';
-  $('#stamp-status').textContent = count ? `${count} ${count === 1 ? 'impression' : 'impressions'} · One participation award` : 'Your ride is complete.';
-}
-function openStamp(id) {
-  const ride = state.rides.find(item => item.id === id); if(!ride?.stamp) return;
-  stampingRideId = id; renderStampPaper();
-  $('#stamp-route').textContent = `${station(ride.from).name_en} → ${station(ride.to).name_en}`;
-  $('#stamp-cycle').hidden = !fullCycle(ride);
-  if(!$('#stamp-dialog').open) $('#stamp-dialog').showModal();
-}
-async function pressStamp() {
-  if(stampingBusy) return;
-  const ride = state.rides.find(item => item.id === stampingRideId); if(!ride?.stamp) return;
-  stampingBusy = true; $('#press-stamp').disabled = true;
-  $('#stamp-dialog').classList.add('is-pressing');
-  try {
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) await new Promise(resolve => setTimeout(resolve,260));
-    const updated = addImpression(ride,earnedFor(ride));
-    state.rides = state.rides.map(item => item.id === ride.id ? updated : item);
-    const saved = persist(); render(); renderStampPaper();
-    $('#stamp-paper').lastElementChild?.classList.add('fresh-impression');
-    $('#stamp-status').textContent = `${impressionCount(updated)} / ${earnedFor(updated)} earned · ${saved ? 'Saved on this device' : 'Not saved; download your notebook'}`;
-    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) await new Promise(resolve => setTimeout(resolve,420));
-  } finally { stampingBusy = false; $('#stamp-dialog').classList.remove('is-pressing'); renderStampPaper(); }
-}
+const openStamp = id => floatingStamp.open(id);
 function renderTask(ride,instance) {
   const task = contentOf(instance);
   if(!task) return '<p class="warning">This older activity is unavailable. Its saved result remains in your notebook download.</p>';
@@ -264,15 +227,6 @@ function renderAtlas() {
     canGive: Boolean(atlasChoice(ride,'give',selectedStationId,view)),
   });
 }
-function renderMetroTimeline(ride) {
-  const route = ride.routeStationIds || getRouteStationIds(stations, ride.from, ride.to);
-  const active = activeTask(ride)?.id;
-  return `<section class="metro-timeline" aria-labelledby="metro-timeline-title">
-    <div class="metro-timeline-heading"><div><p class="eyebrow" lang="en">YOUR ROUTE</p><h2 id="metro-timeline-title">मेट्रोचा प्रवास <small lang="en">Metro map</small></h2></div><span>${route.length - 1} <small lang="en">stops</small></span></div>
-    <ol class="metro-line" aria-label="Stations on this ride">${route.map((id, index) => `<li class="${id === ride.from || id === ride.to ? 'endpoint' : ''} ${index === 0 ? 'current' : ''}"><span class="metro-node" aria-hidden="true"></span><span class="metro-station"><strong>${e(station(id).name_mr)}</strong><small lang="en">${e(station(id).name_en)}</small></span>${index < route.length - 1 ? '<span class="metro-connector" aria-hidden="true"></span>' : ''}</li>`).join('')}</ol>
-    <p class="metro-timeline-note" lang="en">Tap a ride step above to keep the activity in focus. The map is a quiet route reference.</p>
-  </section>`;
-}
 function openAtlasAction(kind) {
   const ride = rideNow(), selectedStationId = atlasStations.get(ride.id) || ride.from;
   const choice = atlasChoice(ride,kind,selectedStationId,atlasViews.get(ride.id) || 'line');
@@ -293,7 +247,7 @@ function renderActive() {
   if(!visible) return;
   const current = activeTask(ride), required = ride.tasks.filter(task => !task.optional);
   const social = current.kind === 'learn' ? ['ही गोष्ट आधी ऐकली होती का?', 'Heard this story before?'] : current.kind === 'give' ? ['तुम्हाला कोणतं आवडतं? एकमेकांना विचारा.', 'Which do you prefer? Compare with each other.'] : ['तुमच्या नेहमीच्या वाटेवर काय दिसलं?', 'What did you notice on your usual route?'];
-  $('#active-ride').innerHTML = `<div class="ride-heading"><div><p class="eyebrow" lang="en">PUNE METRO / ${e(routeLabel(ride))}</p><h1 id="active-title" tabindex="-1">तुमची छोटी सफर</h1></div><button type="button" class="text-button" data-new-ride>↺ नवा प्रवास · New ride</button></div><div class="route-summary"><div><strong>${e(station(ride.from).name_mr)} → ${e(station(ride.to).name_mr)}</strong><small lang="en">${e(station(ride.from).name_en)} → ${e(station(ride.to).name_en)} · ${ride.stopCount} ${ride.stopCount === 1 ? 'stop' : 'stops'}</small></div><button class="secondary-button" type="button" data-together>▦ सोबत सफर <small lang="en">Ride together</small></button></div><nav class="activity-steps" aria-label="Ride activities">${required.map((task,index) => `<button class="step-button" type="button" data-status="${task.status}" data-focus-task="${e(task.id)}" aria-pressed="${task.id === current.id}"><span aria-hidden="true">${task.status === 'pending' ? index+1 : task.status === 'skipped' ? '—' : '✓'}</span><strong>${kinds[task.kind].mr}<small lang="en">${kinds[task.kind].en}</small></strong></button>`).join('')}</nav>${renderMetroTimeline(ride)}${ride.stamp ? `<div class="stamp-banner"><span class="ride-seal">${impressionCount(ride) ? sealMarkup('ride-seal',stampDate(ride)) : '<span class="uninked-seal" aria-hidden="true">◎</span>'}</span><div><h3>सफर पूर्ण झाली!</h3><p lang="en">${impressionCount(ride)} ink impressions · One participation award</p><button class="secondary-button" type="button" data-open-stamp="${e(ride.id)}">शिक्का मारा · Stamp my ride</button></div></div>` : ''}${renderTask(ride,current)}<aside class="conversation-prompt"><span aria-hidden="true">↗</span><strong>${social[0]}</strong><small lang="en">${social[1]}</small><small lang="en">Only if they’d like to talk. A quiet ride counts too.</small></aside>`;
+  $('#active-ride').innerHTML = `<div class="ride-heading"><div><p class="eyebrow" lang="en">PUNE METRO / ${e(routeLabel(ride))}</p><h1 id="active-title" tabindex="-1">तुमची छोटी सफर</h1></div><button type="button" class="text-button" data-new-ride>↺ नवा प्रवास · New ride</button></div><div class="route-summary"><div><strong>${e(station(ride.from).name_mr)} → ${e(station(ride.to).name_mr)}</strong><small lang="en">${e(station(ride.from).name_en)} → ${e(station(ride.to).name_en)} · ${ride.stopCount} ${ride.stopCount === 1 ? 'stop' : 'stops'}</small></div><button class="secondary-button" type="button" data-together>▦ सोबत सफर <small lang="en">Ride together</small></button></div><nav class="activity-steps" aria-label="Ride activities">${required.map((task,index) => `<button class="step-button" type="button" data-status="${task.status}" data-focus-task="${e(task.id)}" aria-pressed="${task.id === current.id}"><span aria-hidden="true">${task.status === 'pending' ? index+1 : task.status === 'skipped' ? '—' : '✓'}</span><strong>${kinds[task.kind].mr}<small lang="en">${kinds[task.kind].en}</small></strong></button>`).join('')}</nav>${ride.stamp ? `<p class="ride-complete-note">✓ सफर पूर्ण झाली · Ride complete <button class="text-button" type="button" data-open-stamp="${e(ride.id)}">Open your stamp ↗</button></p>` : ''}${renderTask(ride,current)}<aside class="conversation-prompt"><span aria-hidden="true">↗</span><strong>${social[0]}</strong><small lang="en">${social[1]}</small><small lang="en">Only if they’d like to talk. A quiet ride counts too.</small></aside>`;
 }
 
 function openTogether() {
@@ -316,39 +270,29 @@ function recordInvitation() {
 }
 
 // Shared season totals: this device reports only its own new counts as anonymous +n bumps.
-const PULSE_KEY = 'safar-seva-pulse-reported', PULSE_URL = '/api/public/pulse';
-let pulse = null, pulseBusy = false, pulseTimer;
+let pulse = null, pulseTimer;
 function localPulse() {
   const stats = getLedgerStats(state.rides);
   return {participants:stats.completedRides,observations:stats.observations,contributions:stats.drafts,groups:state.rides.filter(ride => ride.stamp?.invited).length};
 }
+let pulseInitial = null, pulseBaseline = null;
+const reportPulse = createPulseReporter({storage:localStore,key:'safar-seva:pulse:v3',getLocal:localPulse,getInitial:() => pulseInitial || localPulse(),onTotals:(totals,checkpoint) => { pulse=totals; pulseBaseline=checkpoint.baseline; }});
 async function syncPulse() {
-  if(pulseBusy || TEST_MODE || !navigator.onLine) return; pulseBusy = true;
-  try {
-    let reported = {}; try { reported = JSON.parse(localStorage.getItem(PULSE_KEY)) || {}; } catch {}
-    for(const [metric,value] of Object.entries(localPulse())) {
-      let delta = value - (reported[metric] || 0);
-      while(delta > 0) {
-        const n = Math.min(delta,5);
-        const response = await fetch(PULSE_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({metric,n})});
-        if(!response.ok) throw new Error('pulse');
-        pulse = await response.json(); reported[metric] = (reported[metric] || 0) + n; delta -= n;
-        try { localStorage.setItem(PULSE_KEY,JSON.stringify(reported)); } catch {}
-      }
-    }
-    const response = await fetch(PULSE_URL,{cache:'no-store'}); if(response.ok) pulse = await response.json();
-  } catch {} finally { pulseBusy = false; renderLiveStats(false); }
+  if(TEST_MODE || !navigator.onLine) return;
+  try { await reportPulse(); } catch { /* Offline and retries retain the same event ID. */ }
+  renderLiveStats(false);
 }
 function renderLiveStats(sync = true) {
   if(sync) { clearTimeout(pulseTimer); pulseTimer = setTimeout(syncPulse,400); }
   const base = season.liveBaseline || {}, stats = getLedgerStats(state.rides);
+  const local=localPulse(), mine=key => pulse ? Math.max(0,local[key]-(pulseBaseline?.[key]||0)) : local[key];
   const live = key => pulse && Number.isFinite(pulse[key]) ? pulse[key] : (base[key]||0) + localPulse()[key];
-  const values = [[live('participants'),stats.completedRides,'सहप्रवासी','Riders'],[live('observations'),stats.observations,'निरीक्षणे','Notes'],[live('contributions'),stats.drafts,'शब्द पर्याय','Choices'],[live('groups'),state.rides.filter(ride => ride.stamp?.invited).length,'एकत्र सफर','Groups']];
+  const values = [[live('participants'),mine('participants'),'सफरी','Rides'],[live('observations'),mine('observations'),'निरीक्षणे','Notes'],[live('contributions'),mine('contributions'),'शब्द पर्याय','Choices'],[live('groups'),mine('groups'),'आमंत्रणे','Invites']];
   const bar = $('#live-stats'), old = [...bar.querySelectorAll('.live-number')].map(node => node.textContent);
   const signature = JSON.stringify({values,live:Boolean(pulse),online:navigator.onLine});
   if(bar.dataset.signature === signature) return;
   bar.dataset.signature = signature; bar.dataset.live = Boolean(pulse);
-  bar.innerHTML = `<span class="live-dot" aria-hidden="true"></span>${values.map(([all,mine,mr,en],i) => `<div class="live-stat"><span class="live-number ${old[i] !== undefined && old[i] !== String(all) ? 'bumped' : ''}">${all}</span>${mine ? `<span class="live-mine" title="From this device">+${mine}</span>` : ''}<span class="live-label">${mr}<small lang="en">${en}</small></span></div>`).join('')}<p class="live-legend" lang="en">${TEST_MODE ? 'Practice session · sample season totals' : pulse ? 'Live season totals' : navigator.onLine ? 'Saved season baseline · live totals unavailable' : 'Offline · saved season baseline'} · <span class="live-mine">+n</span> from this device</p>`;
+  bar.innerHTML = `<span class="live-dot" aria-hidden="true"></span>${values.map(([all,mine,mr,en],i) => `<div class="live-stat"><span class="live-number ${old[i] !== undefined && old[i] !== String(all) ? 'bumped' : ''}">${all}</span>${mine ? `<span class="live-mine" title="From this device">+${mine}</span>` : ''}<span class="live-label">${mr}<small lang="en">${en}</small></span></div>`).join('')}<p class="live-legend" lang="en">${TEST_MODE ? 'Practice session · sample season totals' : pulse ? 'Live participation totals' : navigator.onLine ? 'Device totals · live counter unavailable' : 'Offline · device totals'} · <span class="live-mine">+n</span> from this device</p>`;
 }
 function renderNotebook() {
   const stats = getLedgerStats(state.rides); $('#nav-count').textContent = stats.completedRides;
@@ -360,7 +304,11 @@ function renderNotebook() {
   $('#review-status').innerHTML = drafts.reverse().join('') || '<p class="ledger-context">अजून पसंती नाही · No choices yet.</p>';
 
 }
-function render() { renderActive(); renderYatra(); renderNotebook(); renderStories(); renderLiveStats(); }
+function render() {
+  renderActive(); renderYatra(); renderNotebook(); renderLiveStats();
+  routeSidecar.render(rideNow(),stations,lines,catalog,!showBuilder);
+  floatingStamp?.render();
+}
 function showTask(id,{scroll = true} = {}) {
   const ride = state.rides.find(item => item.tasks.some(task => task.id === id)); if(!ride) return;
   state.currentRideId = ride.id; state.currentTaskId = id; showBuilder = false; selectedTasks.set(ride.id,id); persist(); render();
@@ -404,7 +352,7 @@ function showShare(packet,{download = false,focus = true} = {}) {
   shareHash = packet.hash;
   if(download) downloadJSON(packet,`safar-seva-${TEST_MODE ? 'TEST-' : ''}contribution-${packet.hash.slice(0,10)}.json`);
   $('#share-panel').hidden = false;
-  $('#share-panel').innerHTML = `<h3 id="share-title" tabindex="-1">शेअर करण्यासाठी फाइल तयार आहे</h3><p lang="en">Your contribution file is ready. It contains your suggested wording and the story version; your journeys and station notes stay here.</p><ol class="handoff-instructions"><li>फाइल डाउनलोड करा. <span lang="en">Download the contribution file.</span></li><li>पायलटच्या आयोजकांनी सांगितलेल्या LOFL संपादकाला ती द्या. <span lang="en">Give it to the LOFL reviewer named by your pilot organiser, using your agreed channel.</span></li><li>निर्णय आला का हे नंतर वहीत तपासा. <span lang="en">Check your notebook later for the published decision.</span></li></ol><p class="handoff-honesty" lang="en">This demo has no automatic inbox. If no reviewer or channel has been agreed, keep the file here. “I’ve handed it over” records your action on this device; it does not confirm delivery.</p>${packetActions(packet)}<details id="contribution-preview" class="export-preview"><summary>डाउनलोड झालं नाही? मजकूर कॉपी करा · Download trouble?</summary><label class="sr-only" for="contribution-json">Contribution-only JSON</label><textarea id="contribution-json" readonly spellcheck="false">${e(JSON.stringify(packet,null,2))}</textarea></details>`;
+  $('#share-panel').innerHTML = `<h3 id="share-title" tabindex="-1">शेअर करण्यासाठी फाइल तयार आहे</h3><p lang="en">Your contribution file is ready. It contains your suggested wording and the story version; your journeys and station notes stay here.</p><button class="primary-button" type="button" data-send-wording="${e(packet.hash)}">Send to reviewer ↗</button><ol class="handoff-instructions"><li>फाइल डाउनलोड करा. <span lang="en">Download the contribution file.</span></li><li>पायलटच्या आयोजकांनी सांगितलेल्या LOFL संपादकाला ती द्या. <span lang="en">Give it to the LOFL reviewer named by your pilot organiser, using your agreed channel.</span></li><li>निर्णय आला का हे नंतर वहीत तपासा. <span lang="en">Check your notebook later for the published decision.</span></li></ol><p class="handoff-honesty" lang="en">Use “Send to reviewer” on the hosted site. If the service is unavailable, download the file and use your agreed handoff channel. “I’ve handed it over” records your action on this device; it does not confirm delivery.</p>${packetActions(packet)}<details id="contribution-preview" class="export-preview"><summary>डाउनलोड झालं नाही? मजकूर कॉपी करा · Download trouble?</summary><label class="sr-only" for="contribution-json">Contribution-only JSON</label><textarea id="contribution-json" readonly spellcheck="false">${e(JSON.stringify(packet,null,2))}</textarea></details>`;
   if(focus) $('#share-title').focus();
 }
 async function prepareContribution(id) {
@@ -438,12 +386,6 @@ function matchGiving(id) {
 }
 
 function bindEvents() {
-  $('#close-stamp').addEventListener('click',() => $('#stamp-dialog').close());
-  $('#stamp-dialog').addEventListener('close',() => { document.querySelector(`[data-open-stamp="${CSS.escape(stampingRideId || '')}"]`)?.focus({preventScroll:true}); });
-  $('#cycle-download').addEventListener('click',() => $('#export-ledger').click());
-  $('#stamp-done').addEventListener('click',() => $('#stamp-dialog').close());
-  $('#press-stamp').addEventListener('click',() => pressStamp().catch(error => toast(error.message)));
-  $('#stamp-dialog').addEventListener('click',event => { if(event.target === $('#stamp-dialog')) $('#stamp-dialog').close(); });
   $('#close-together').addEventListener('click',() => $('#together-dialog').close());
   $('#together-dialog').addEventListener('click',event => { if(event.target === $('#together-dialog')) $('#together-dialog').close(); });
   $('#together-dialog').addEventListener('close',() => document.querySelector('[data-together]')?.focus({preventScroll:true}));
@@ -456,6 +398,7 @@ function bindEvents() {
     try { await navigator.share({title:'Safar Seva · Ride together',url:$('#together-link').value}); recordInvitation(); } catch(error) { if(error.name !== 'AbortError') toast('Use Copy link instead.'); }
   });
   $('#together-link').addEventListener('click',event => event.target.select());
+  $('#nav-stories').href = storyURL();
   $('#nav-home').addEventListener('click',() => { showBuilder = true; render(); });
   $('#from').addEventListener('change',updatePreview); $('#to').addEventListener('change',updatePreview);
   $('#swap-stations').addEventListener('click',() => { const from = $('#from').value; $('#from').value = $('#to').value; $('#to').value = from; updatePreview(); });
@@ -549,6 +492,13 @@ function bindEvents() {
           await playMove(button,() => commitTask(instance,{stationId:values.stationId || ride.from,feature:instance.feature,answer:button.dataset.checkAnswer,location:values.location || '',note:values.note || '',observedAt}));
         } catch(error) { form.querySelector('.field-error').textContent = error.message; }
       }
+      if(button.dataset.sendWording) {
+        const packet=packetByHash(button.dataset.sendWording);
+        packet.submissionId ||= crypto.randomUUID(); persist();
+        button.disabled=true;
+        try { await sendSubmission('wording',packet,{practice:TEST_MODE}); toast('Sent to the reviewer inbox. Your notebook stays on this device.'); }
+        catch(error) { toast(error.message); button.disabled=false; }
+      }
       if(button.dataset.prepare) await prepareContribution(button.dataset.prepare);
       if(button.dataset.redownload) showShare(packetByHash(button.dataset.redownload),{download:true});
       if(button.dataset.shareInfo) showShare(packetByHash(button.dataset.shareInfo));
@@ -558,21 +508,12 @@ function bindEvents() {
         persist(); render(); if(!$('#share-panel').hidden) showShare(packet); toast('तुम्ही फाइल दिल्याची नोंद केली. Handoff recorded here; delivery is not independently confirmed.');
       }
       if(button.dataset.revise) { await refreshPublication(); revisePacket(packetByHash(button.dataset.revise)); }
-      if(button.dataset.readStory) {
-        const storyId = button.dataset.readStory;
-        if(!catalog.stories.some(story => story.id === storyId)) throw new Error('This story is unavailable.');
-        const now = new Date().toISOString(), today = istInput(now).slice(0,10);
-        if(!progressNow().discovered.includes(storyId) && !state.storyReads.some(read => read.storyId === storyId && istInput(read.readAt).slice(0,10) === today)) state.storyReads.push({storyId,readAt:now});
-        persist(); renderYatra(); renderStories(); document.querySelector(`#${CSS.escape(storyId)} [data-read-story]`)?.focus({preventScroll:true});
-        toast(progressNow().state === 'upcoming' ? `वाचल्याची नोंद केली. Seasonal counting starts ${seasonDates(season).start}.` : progressNow().state === 'ended' ? 'वाचल्याची नोंद केली. Reading saved; the season has ended.' : 'वाचल्याची नोंद केली. Each story counts once this season.');
-      }
     } catch(error) { toast(error.message); }
   });
   const openHash = (hash = location.hash) => {
     let id; try { id = decodeURIComponent(hash.slice(1)); } catch { return; }
+    if (id === 'more' || id === 'stories' || catalog.stories.some(story => story.id === id)) { location.href = storyURL(id.startsWith('story-') ? id : null); return; }
     const target = document.getElementById(id); if(!target) return;
-    if(target.matches('.library-story')) target.open = true;
-    const more = target.closest('#more'); if(more) more.open = true;
     requestAnimationFrame(() => target.scrollIntoView({block:'start'}));
   };
   document.addEventListener('click',event => {
@@ -582,6 +523,7 @@ function bindEvents() {
   window.addEventListener('hashchange',() => openHash()); window.addEventListener('online',syncPulse);
   setInterval(() => { if(document.visibilityState === 'visible') syncPulse(); },30000);
   if(location.hash) openHash();
+  window.addEventListener('storage',event => { if(event.key === STORAGE_KEY) { loadState(); render(); } });
   window.addEventListener('online',updateConnection); window.addEventListener('offline',updateConnection);
 }
 function updateConnection() {
@@ -610,8 +552,9 @@ async function prepareOffline() {
 async function init() {
   if(TEST_MODE) { $('#test-warning').hidden = false; $('#test-warning').innerHTML = `<strong>TEST · ${e(TEST_SESSION)}</strong> <span lang="en">Separate practice data; no real review claim.</span>`; }
   loadState();
-  if(TEST_MODE) $('.reviewer-entry').href = './review.html?test='+encodeURIComponent(TEST_SESSION);
-  try { if(storageAvailable) { localStorage.setItem('safar-seva:probe','1'); localStorage.removeItem('safar-seva:probe'); } }
+  pulseInitial = localPulse();
+  if(TEST_MODE && $('.reviewer-entry')) $('.reviewer-entry').href = './review.html?test='+encodeURIComponent(TEST_SESSION);
+  try { if(storageAvailable) { localStore.setItem('safar-seva:probe','1'); localStore.removeItem('safar-seva:probe'); } }
   catch { storageAvailable = false; warning('Device storage is unavailable. Download your work before closing.'); }
   try {
     const [stationData,loadedTasks,loadedSeason,publication] = await Promise.all([getJSON('./stations.json'),getJSON('./tasks.json'),getJSON('./season.json'),readPublication()]);
@@ -633,6 +576,15 @@ async function init() {
         $('#invitation-banner').textContent = 'सोबत सफरचं आमंत्रण · Same route, same story. Start when you’re ready; your answers stay separate.';
       }
     } catch(error) { $('#invitation-banner').hidden = false; $('#invitation-banner').textContent = error.message; }
+    floatingStamp = mountFloatingStamp({
+      getState:() => state, stationName:id => station(id).name_en, notify:toast,
+      onImpression:updated => {
+        state.rides = state.rides.map(ride => ride.id === updated.id ? updated : ride);
+        if (!persist()) throw new Error('Stamp is not saved. Download your notebook before closing.');
+        render();
+      },
+      onDownload:exportNotebook, isFullCycle:fullCycle,
+    });
     showBuilder = Boolean(invitation) || !rideNow(); updatePreview(); bindEvents(); render(); persist(); await prepareOffline();
   } catch(error) {
     $('#retry-load').hidden = false; $('#retry-load').addEventListener('click',() => location.reload(),{once:true});

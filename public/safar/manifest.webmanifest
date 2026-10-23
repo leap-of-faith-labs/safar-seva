@@ -4,7 +4,7 @@
   "short_name": "Safar Seva",
   "description": "A little good, along the way. Private, Marathi-first ride cards for Pune Metro.",
   "lang": "mr",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#F1E8D7",
